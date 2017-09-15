@@ -22,6 +22,6 @@
 # Practice
 
 * 08/23/17
-> *Created a portal account at FutureSystems Portal, Username: tifabi
+> *Created a portal account at FutureSystems Portal, *Username: tifabi* 
 > *Created Chameleon account
 
