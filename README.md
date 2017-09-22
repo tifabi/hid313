@@ -24,7 +24,7 @@ paper1:
       pharmaceutical client to explore the problems faced to
       implementing big data platform solutions and the benefits these
       solutions offer once in use.
-   url: https://github.com/bigdata-i523/hid313/blob/master/Paper%201/TFabianac_Paper1.tex
+   url: https://github.com/bigdata-i523/hid313/blob/master/Paper1/report.tex
    type: latex
    status: in progress
  ```
@@ -41,7 +41,7 @@ paper1:
    abstract: >
       This paper will Explore the current market of applications developed 
       for handling big data produced in laboratories of the R&D space.
-   url: https://github.com/bigdata-i523/hid313/blob/master/Paper%202/TFabianac_Paper2.tex
+   url: https://github.com/bigdata-i523/hid313/blob/master/Paper2/report.tex
    type: latex
    status: in progress
  ```
