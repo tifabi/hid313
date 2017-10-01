@@ -26,7 +26,7 @@ paper1:
       solutions offer once in use.
    url: https://github.com/bigdata-i523/hid313/blob/master/Paper1/report.tex
    type: latex
-   status: in progress
+   status: 50%
    chapter: Technology
 ```
 
@@ -44,5 +44,5 @@ paper2:
       for handling big data produced in laboratories of the R&D space.
    url: https://github.com/bigdata-i523/hid313/blob/master/Paper2/report.tex
    type: latex
-   status: in progress
+   status: 5%
 ```
