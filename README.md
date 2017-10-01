@@ -27,12 +27,13 @@ paper1:
    url: https://github.com/bigdata-i523/hid313/blob/master/Paper1/report.tex
    type: latex
    status: in progress
- ```
+   chapter: Technology
+```
 
 # Paper 2
 
 ```
-paper1:
+paper2:
    author: 
    - Tiffany Fabianac
    hid:
@@ -44,4 +45,4 @@ paper1:
    url: https://github.com/bigdata-i523/hid313/blob/master/Paper2/report.tex
    type: latex
    status: in progress
- ```
+```
