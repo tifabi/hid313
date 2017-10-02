@@ -26,16 +26,14 @@
 }
 \email{tifabi@iu.edu}
 
-% The default list of authors is too long for headers}
 \renewcommand{\shortauthors}{T. Fabianac}
 
 
 \begin{abstract}
-This paper uses an industry example of a large pharmaceutical client to explore the problems faced to implementing big data platform solutions and the benefits these solutions offer once in use.
-
+Big Data platform solutions allow data producers to use data to the fullest potential by combining processing engines with storage solutions and analytic technologies. Pharmaceutical clients are looking into platform solutions to safely store, analyze, and use clinical trial data, experimental data, drug development studies, drug production, regulation, and a number of other outlets. Just a few of the benefits of using a platform solution to manage these data outlets are not having to change current work processes, that management and other research groups can access and use data without needing special access to systems, and scaleability of storage and analytic components is seamless. The problems faced to implementing big data platform solutions include the selection of a platform vendor, the design of appropriate data architecture, and establishing effective user interfaces.
 \end{abstract}
 
-\keywords{Big Data, Platform, Cloud Architecture}
+\keywords{i523, HID313, Big Data, Platform, Cloud Architecture}
 
 
 \maketitle
@@ -45,20 +43,40 @@ Most pharmaceutical companies have adopted one or many Laboratory Information Ma
 
 One of the emerging strategies to combat the problems arising from isolated systems is to combine systems using cloud computing. Platform as a Service (PaaS) provides an environment for the development and execution of applications and software tools. The platform is the heart of a cloud computing infrastructure that enables software on-top as well as data created from such software to be accessed and used my a multitude of users\cite{Ojala}.
 
-This review seeks to outline the benefits and challenges of using a PaaS approach to share and regulate R\&D data within a large pharmaceutical company that has already implemented numerous laboratory systems. 
+The benefits and challenges of using a PaaS approach to share and regulate R\&D data within a large pharmaceutical company that has already implemented numerous laboratory systems will be outlined below. 
 
-\section{Importance of Platforms}
+\section{Importance of Platforms}	
 %why is this topic important
 Many organizations struggle with the aim of sharing data and processing tools among researchers. SaaP provides a method of better resource utilization while reducing maintenance costs\cite{Oh}. 
+%storage
+
+%analysis
+
+%use (regulation, reuse, research)
 
 \section{Implementing Platforms}
 %cover issues
-The overarching concern with storing data outside of the organization is security. Numerous methods have been developed to assure cloud security such as integrated stacks used by Google and Microsoft Azure and Service Level Agreements (SLAs)\cite{Casola}.
+Some of the biggest concerns associated with implementing platforms involve security, selecting the right solution, designing the data architecture and associated relationships, and planning the user interface. All of the large platform providers have invested enormous amounts of resources into assuring the security of their data storage solutions. The right solution might be based on the applications available, the storage solution's design, the cost, the learning curve, or a number of other client based requirements. Data architecture has the overarching purpose to design the data warehouse solution without limitations to growth or analysis tools and query speed. User interface depends mostly on the user requirements, it could be driven by how much visibility is needed and how read and write privileges are designated. 
+
+The overarching concern with storing data outside of the organization is security. Numerous methods have been developed to assure cloud security such as integrated stacks used by Google and Microsoft Azure and Service Level Agreements (SLAs)\cite{Casola}. Cloud companies are required to maintain high security at all levels. Google runs various vulnerability reward programs that pay developers, hackers, and security experts for finding security bugs. In addition to the product bugs, Google also maintains high security at their data centers which includes laser beam intrusion detection, multi-factor access control, and biometrics to a limited population of less than 1\% of Googlers\cite{www-gcp_security}. 
 %explain stacks and SLA and STAR
+
+Microsoft big data solutions have taken advantage of open source technologies by setting Hadoop as the center of their big data platform. Hadoop is implemented through Hortonworks Data Platform (HDP) which has been developed as a open source solution with Apache and other open source components. Microsoft allows cloud and on-premise implementation, but generally local environments are only used as proof of concept testing. Microsoft platform solutions allow for data to be manipulated and used in Microsoft tools such as Sharepoint and Excel while big data analysis, visualization, and mining can be performed using SQL Server Analysis Services or HDInsight. The Hadoop-based platform has no limitations with structured or unstructured data, a number of additional tools are available for data storage, and efficient queries provide a potential boost to discovery. Microsoft Azure storage runs \$40 a month per 1TB and employs a pay for use plan to resource use within the platform's toolbox\cite{www-msdn}.
+%such as Data Quality Services, Master Data Services
+
+Amazon Web Services (AWS) offers data storage solutions in NoSQL and Relational Database models. Interactions with these data engines can be done using Hadoop, Interactive Query Service, or Elasticsearch. Amazon has designed their storage sources in such a way that clients can use any preferred open source application, but Amazon has also developed a toolbox of analytic tools. Amazon offers data warehousing through Amazon Redshift which allows for management, query, and analysis at the petabyte-scale. Amazon storage runs around \$80 a month per 1TB. AWS offers Business Intelligence, Artificial Intelligence, Machine Learning, Internet of Things, Serverless Computing, and a number of data interface tools available in a pay-as-you-use billing form\cite{www-aws}. 
+
+Google Cloud Platform (GCP) offers a complete end-to-end data storage solution which allows the use of GCP developed systems and open source tools. BigQuery is Google's data warehouse tool which is serverless and requires no infrastructure management with the assist of Google Cloud Dataflow. Dataflow eliminates the need for resource management and performance optimization. GCP storage runs \$10 a month per 1TB. GCP has a number of applications for data manipulation. Dataproc allows dataset management through Hadoop and Spark, data visualization can be generated through Datalab, Data Studio, and Dataprep which are all Google developed applications\cite{www-gcp}.
+
+%Architecture design
+All data storage solutions from relational databases to noSQL data stores to cloud data warehouses have to start with a defined architecture. The data architecture model will illustrate how data components will be organized and connected. The mindset of a data architect should be focused on reducing complexity of the data model while maintaining the highest level on utilization. This can be a fine line to walk as a designer. Complexity can be reduced by breaking user requirements down to the most basic and generalized principles to define the simplest data modules. An example of this might be a system that requires a number of different requests and instead of designing a component for vendor requests, user requests, and management requests the component is designed for request and request type. This generality allows for easy future scaling or additional system requirements not yet defined. Cloud systems maintain high utilization by manipulating data using strategic layering. One layer for storage, one layer for defining storage keys, another for combining query tools, another for consolidating query results and so on. With the more established cloud offerings a lot of these layers have already been supplied, but they transitions and interconnections still have to be outlined by a designer\cite{Saltzer}.
+
+%User Interface
+
 
 
 \section{Platforms and Big Data}
-%how it's relevant to big data
+%how its relevant to big data
 
 
 \begin{acks}
