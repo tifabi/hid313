@@ -29,6 +29,11 @@ Continued writing Paper 1
 ```
 Continued to 80% completion of Paper 1, started researching for Paper 2
 ```
+* 10/05/17
+```
+Read through 2.4-2.6
+Completed Paper 1 and started research for Paper 2
+```
 
 # Theory
 
