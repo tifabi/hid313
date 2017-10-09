@@ -32,7 +32,7 @@ paper1:
       problems faced to implementing big data platform solutions include the selection 
       of a platform vendor, the design of appropriate data architecture, and establishing
       effective user interfaces.
-   url: https://github.com/bigdata-i523/hid313/blob/master/Paper1/report.tex
+   url: https://github.com/bigdata-i523/hid313/blob/master/paper1/report.tex
    type: latex
    status: 100%
    chapter: Technology
