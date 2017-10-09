@@ -34,7 +34,7 @@ paper1:
       effective user interfaces.
    url: https://github.com/bigdata-i523/hid313/blob/master/Paper1/report.tex
    type: latex
-   status: 80%
+   status: 99%
    chapter: Technology
 ```
 
