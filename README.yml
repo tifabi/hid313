@@ -4,7 +4,8 @@ owner:
     name: Tiffany Fabianac
     url: https://github.com/bigdata-i523/hid313
 paper1:
-    abstract: 'Big Data platform solutions allow data producers to use data to the
+    abstract: >
+        Big Data platform solutions allow data producers to use data to the
         fullest potential by combining processing engines with storage solutions and
         analytic  technologies. Pharmaceutical clients are looking into platform solutions
         to  safely store, analyze, and use clinical trial data, experimental data,
@@ -16,8 +17,6 @@ paper1:
         is seamless. The  problems faced to implementing big data platform solutions
         include the selection  of a platform vendor, the design of appropriate data
         architecture, and establishing effective user interfaces.
-
-        '
     author:
         - Tiffany Fabianac
     chapter: Technology
@@ -28,10 +27,9 @@ paper1:
     type: latex
     url: https://github.com/bigdata-i523/hid313/blob/master/paper1/report.tex
 paper2:
-    abstract: 'Explore the current market of applications developed  for handling
+    abstract: >
+        Explore the current market of applications developed  for handling
         big data produced in laboratories of the R&D space.
-
-        '
     author:
         - Tiffany Fabianac
     hid:
