@@ -6,17 +6,19 @@ owner:
 paper1:
     abstract: >
         Big Data platform solutions allow data producers to use data to the
-        fullest potential by combining processing engines with storage solutions and
-        analytic  technologies. Pharmaceutical clients are looking into platform solutions
-        to  safely store, analyze, and use clinical trial data, experimental data,
-        drug  development studies, drug production, regulation, and a number of other
-        outlets.  Just a few of the benefits of using a platform solution to manage
-        these data  outlets are not having to change current work processes, that
-        management and  other research groups can access and use data without needing
-        special access to  systems, and scaleability of storage and analytic components
-        is seamless. The  problems faced to implementing big data platform solutions
-        include the selection  of a platform vendor, the design of appropriate data
-        architecture, and establishing effective user interfaces.
+        fullest potential by combining processing engines with storage
+        solutions and analytic  technologies. Pharmaceutical clients are
+        looking into platform solutions to  safely store, analyze, and use
+        clinical trial data, experimental data, drug  development studies,
+        drug production, regulation, and a number of other outlets.  Just a
+        few of the benefits of using a platform solution to manage these data
+        outlets are not having to change current work processes, that
+        management and  other research groups can access and use data without
+        needing special access to  systems, and scalability of storage and
+        analytic components is seamless. The  problems faced to implementing
+        big data platform solutions include the selection  of a platform
+        vendor, the design of appropriate data architecture, and establishing
+        effective user interfaces.
     author:
         - Tiffany Fabianac
     chapter: Technology
@@ -34,7 +36,7 @@ paper2:
         - Tiffany Fabianac
     hid:
         - 313
-    status: 5%
+    status: 25%
     title: Big Data Applications in Laboratories
     type: latex
     url: https://github.com/bigdata-i523/hid313/blob/master/Paper2/report.tex
