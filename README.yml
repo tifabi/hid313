@@ -29,6 +29,7 @@ paper1:
     type: latex
     url: https://github.com/bigdata-i523/hid313/blob/master/paper1/report.tex
 paper2:
+    review: Nov 6 2017
     abstract: >
         Explore the current market of applications developed  for handling
         big data produced in laboratories of the research and development space.
