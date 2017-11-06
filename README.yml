@@ -31,13 +31,18 @@ paper1:
 paper2:
     review: Nov 6 2017
     abstract: >
-        Explore the current market of applications developed  for handling
-        big data produced in laboratories of the research and development space.
+        Ground breaking scientific research and development happen in laboratories all
+        over the world every day. The recent flux of data has revolutionized
+        laboratories across several very different sectors. Many laboratories operate
+        at the capacity that require big data tools. Exploring the current need for big
+        data tools across several industries provides a view of where these tools are
+        currently being applied and how they are benefiting the industry as well as
+        where gaps exist.
     author:
         - Tiffany Fabianac
     hid:
         - 313
-    status: 25%
+    status: 100%
     title: Big Data Applications in Laboratories
     type: latex
-    url: https://github.com/bigdata-i523/hid313/blob/master/Paper2/report.tex
+    url: https://github.com/bigdata-i523/hid313/blob/master/paper2/report.tex
