@@ -31,13 +31,13 @@ paper1:
 paper2:
     review: Nov 6 2017
     abstract: >
-        Ground breaking scientific research and development happen in laboratories all
-        over the world every day. The recent flux of data has revolutionized
-        laboratories across several very different sectors. Many laboratories operate
-        at the capacity that require big data tools. Exploring the current need for big
-        data tools across several industries provides a view of where these tools are
-        currently being applied and how they are benefiting the industry as well as
-        where gaps exist.
+        Ground breaking scientific research and development happen in
+        laboratories all over the world every day. The recent flux of data has
+        revolutionized laboratories across several very different sectors. Many
+        laboratories operate at the capacity that require big data tools.
+        Exploring the current need for big data tools across several industries
+        provides a view of where these tools are currently being applied and how
+        they are benefiting the industry as well as where gaps exist.
     author:
         - Tiffany Fabianac
     hid:
