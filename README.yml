@@ -47,3 +47,24 @@ paper2:
     title: Big Data Applications in Laboratories
     type: latex
     url: https://github.com/bigdata-i523/hid313/blob/master/paper2/report.tex
+project:
+    abstract: >
+        While many relate stock market trading to gambling, successful traders
+        have turned stock picking into a science. The likes of Warren Buffet
+        tell us that successful stock buying is all in the research. So what
+        kind of research aids in the prediction of companies within the highly
+        volatile pharmaceutical market? The use of available, open-source APIs
+        and Google Alerts are used to explore if clinical trial results can
+        directly impact stock performance in small, mid, and large cap
+        pharmaceutical companies. Key words and/or phrases in results and
+        related news articles are identified as possible predictors of market
+        effect. As well as a comparison to already established analyst ratings
+        or others which have already been shown to impact stock performance.
+    author:
+        - Tiffany Fabianac
+    hid:
+        - 313
+    status: 10%
+    title: The Impact of Clinical Trial Results on Pharmaceutical Stock Performance
+    type: latex
+    url: https://github.com/bigdata-i523/hid313/blob/master/project/report.tex
