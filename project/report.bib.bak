@@ -18,4 +18,48 @@
   url          = {https://www.nasdaqdod.com/Shop/ProductConfig.aspx?product=webservices&service=NASDAQDataOnDemand},
 }
 
+@Misc{www-python-yahoo,
+  author       = {Python.org},
+  title        = {yahoo-finance 1.4.0},
+  howpublished = {Website},
+  month        = {11},
+  year         = {2016},
+  timestamp    = {2017-11-26},
+  url          = {https://pypi.python.org/pypi/yahoo-finance},
+}
+
+@Misc{www-tar,
+  author       = {LINFO},
+  title        = {The tar Command},
+  howpublished = {website},
+  month        = {07},
+  year         = {2006},
+  timestamp    = {2017-10-17},
+  url          = {http://www.linfo.org/tar.html},
+}
+
+@Misc{www-investopedia,
+  author       = {Investopedia},
+  title        = {Stock Market},
+  howpublished = {Website},
+  month        = {09},
+  year         = {2017},
+  timestamp    = {2017-11-26},
+  url          = {https://www.investopedia.com/terms/s/stockmarket.asp?lgl=rira-layout},
+}
+
+@Book{Braudel,
+  title     = {Civilization and Capitalism, 15th-18th Century, Vol. II: The Wheels of Commerce},
+  publisher = {University of California Press},
+  year      = {1982},
+  author    = {Braudel, F.},
+  series    = {Civilisation mat{\'e}rielle, {\'e}conomie et capitalisme},
+  isbn      = {9780520081154},
+  date      = {1992-12-11},
+  ean       = {9780520081154},
+  lccn      = {82048109},
+  pagetotal = {3},
+  url       = {https://books.google.com/books?id=WPDbSXQsvGIC},
+}
+
 @Comment{jabref-meta: databaseType:bibtex;}

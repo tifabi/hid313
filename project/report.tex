@@ -36,18 +36,22 @@ While many relate stock market trading to gambling, successful traders have turn
 \keywords{Big Data, HID313, i523, Stock Market, Pharmaceutical}
 \maketitle
 \section{Introduction}
-Stock market 
+A ``stock'' is a piece of ownership in a company. Offering stocks for sale provides capital to the selling company in exchange for a stake in the company. A stock market is a collection of exchanges where trading of stocks takes place \cite{www-investopedia}. Evidence of early stock markets date back to the fourteenth century with the offering of state loan stocks throughout Italy. Even prior to the organization of stock markets, price fluctuations for goods such as wheat and barley were tracked by early economists. The first ``modern'' stock market appeared in Amsterdam in the seventeenth century where the volume of stocks traded and the fluidity in which they were traded reached a new high \cite{Braudel}. 
+
+Throughout the history of markets, prices have been tracked and insightful traders have attempted to predict and capitalize on price fluctuation. The age of computers opened new doors for stock analysis and trend prediction to facilitate capital gains for traders
 
 
-\section{Pharmaceutical Sector}
-
-\section{Clinical Trials}
 
 
-\section{Established Analyst Ratings}
+\subsection{Pharmaceutical Sector}
+
+\subsection{Clinical Trials}
 
 
-\section{Data Collection}
+\subsection{Established Analyst Ratings}
+
+\section{Methods}
+\subsection{Data Collection}
 %news articles from Google Alerts for text mining
 
 %daily stock performance
@@ -64,16 +68,49 @@ date,close,volume,open,high,low
 \end{lstlisting}
 \end{mdframed} 
 
+Python.org provides a python module to pull stock data from Yahoo! Finance \cite{www-python-yahoo}. The package can be installed through Git by cloning the Git directory where the package is available,  using the ``Change Directory'' command ``cd'' to change the current working directory, and installing the python module as follows: 
+
+\begin{mdframed}[style=default]
+\begin{lstlisting}
+$ git clone git://github.com/lukaszbanasiak/yahoo-finance.git
+$ cd yahoo-finance
+$ python setup.py install
+\end{lstlisting}
+\end{mdframed}
+
+If the Python setup returns the error: ``python: command not found'' run the following with the path to the python installation:
+\begin{mdframed}[style=default]
+\begin{lstlisting}
+$ PATH="$PATH:/c/Python27"
+\end{lstlisting}
+\end{mdframed}
+
+To install the python package without Git the tape archive can be downloaded from https://pypi.python.org/pypi/yahoo-finance. Tape archives allow for compression of multiple files which can be restored to their original format using the tar command in the command line \cite{www-tar}.  Apply the tar options: z - filter archive through gzip, x - extract an archive file, and f - filename of archive, use ``cd'' to change the current working directory, and then install the python module using the package management command ``pip'':
+\begin{mdframed}[style=default]
+\begin{lstlisting}
+tar -zxf yahoo-finance-1.4.0.tar.gz
+cd yahoo-finance
+pip install yahoo-finance
+\end{lstlisting}
+\end{mdframed}
+
+%python -m pip install --user numpy scipy matplotlib ipython jupyter pandas sympy nose
+%urllib3 chardet idna
+
+
 
 %trial results
 
 
-\section{Data Analysis}
+\subsection{Data Analysis}
 %text mining
 
 %logistic regression
 
-\section{Comparison to Established Analyst Ratings}
+
+\section{Results}
+
+\subsection{Comparison to Established Analyst Ratings}
 %What did the analysts perdict about the companies analyzed?
 
 
