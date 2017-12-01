@@ -38,24 +38,31 @@ While many relate stock market trading to gambling, successful traders have turn
 \section{Introduction}
 A ``stock'' is a piece of ownership in a company. Offering stocks for sale provides capital to the selling company in exchange for a stake in the company. A stock market is a collection of exchanges where trading of stocks takes place \cite{www-investopedia}. Evidence of early stock markets date back to the fourteenth century with the offering of state loan stocks throughout Italy. Even prior to the organization of stock markets, price fluctuations for goods such as wheat and barley were tracked by early economists. The first ``modern'' stock market appeared in Amsterdam in the seventeenth century where the volume of stocks traded and the fluidity in which they were traded reached a new high \cite{Braudel}. 
 
-Throughout the history of markets, prices have been tracked and insightful traders have attempted to predict and capitalize on price fluctuation. The age of computers opened new doors for stock analysis and trend prediction to facilitate capital gains for traders
+The biggest stock markets in the world are currently the New York Stock Exchange (NYSE), the National Association of Securities Dealers Automated Quotations (NASDAQ), and the London Stock Exchange. NYSE did stuff... NASDAQ began as an all-electric equities exchange in 1971 and today provides trading, technology, and information services for financial markets. Today   \cite{www-nasdaq}.
 
+Throughout the history of markets, prices have been tracked and insightful traders have attempted to predict and capitalize on price fluctuation. The age of computers opened new doors for stock analysis and trend prediction to facilitate capital gains for traders. Financial companies like Goldman Sachs and JPMorgan Chase \& Co. have hired mathematicians, statisticians, and trade analysts since the early days of trading in an effort to predict the market in a consistent manner. %need cite for financial comapnies use to algorithms - look up history
+Once an algorithm is established and used consistently the algorithm itself but be considered as a variable that could effect the prediction outcome \cite{Hellstrom}. 
 
+A major complexity in creating algorithms for the stock market is that the market tends to follow the erratic emotions and feelings of humans. If computers were running the market, making trade decisions based on logic and reason, then the market would be much more stable. The volatility of human emotions about money and stocks creates tremendous volatility in the market. The revolution of social media has provided a means of measuring the mood of possible traders \cite{BOLLEN}.
+
+%Explain API, Machine Learning Tech,Text Mining  how they are used what they are
+An Application Programming Interface (API) acts as the middleman between the requesting service and the preforming service. When a user or system submits a request the request is passed to the API which translates it for the processing system then returns the results in a receivable format. 
 
 
 \subsection{Pharmaceutical Sector}
+The pharmaceutical industry %is driven by stuff and things
+
+Like the financial sector trying to predict the stock market, the pharmaceutical industry has devoted resources to developing prediction algorithms and machine learning systems. The efforts of drug manufacturers are to create a system that consistently predicts or aids in identifying drug targets. %talk about virtual high throughput
+
+
 
 \subsection{Clinical Trials}
 
 
 \subsection{Established Analyst Ratings}
 
-\section{Methods}
-\subsection{Data Collection}
-%news articles from Google Alerts for text mining
-
-%daily stock performance
-The National Association of Securities Dealers Automated Quotations (NASDAQ) began as an all-electric equities exchange in 1971 and today provides trading, technology, and information services for financial markets  \cite{www-nasdaq}. NASDAQ's website provides historical stock performance data that can be exported as a Comma-Separated Values (CSV) file. The disadvantage of NASDAQ's free export service is that each stock must be exported separately. The free quote service can be accessed at http://www.nasdaq.com/quotes/. NASDAQ provides API services for subscribers starting at \$5,000 per year \cite{www-nasdaq-sub}. Access to NASDAQ's API services can also be granted through corporate sponsorship. NASDAQ's free CSV export services were used to collect initial project data. In example, the stock history for Celsion Corporation during the week of August 21, 2017 is shown.
+\subsection{Data Resources}
+NASDAQ's website provides historical stock performance data that can be exported as a Comma-Separated Values (CSV) file. The disadvantage of NASDAQ's free export service is that each stock must be exported separately. The free quote service can be accessed at http://www.nasdaq.com/quotes/. NASDAQ provides API services for subscribers starting at \$5,000 per year \cite{www-nasdaq-sub}. Access to NASDAQ's API services can also be granted through corporate sponsorship. NASDAQ's free CSV export services were used to collect initial project data. In example, the stock history for Celsion Corporation during the week of August 21, 2017 is shown.
 
 \begin{mdframed}[style=default]
 \begin{lstlisting}
@@ -68,12 +75,32 @@ date,close,volume,open,high,low
 \end{lstlisting}
 \end{mdframed} 
 
-Python.org provides a python module to pull stock data from Yahoo! Finance \cite{www-python-yahoo}. The package can be installed through Git by cloning the Git directory where the package is available,  using the ``Change Directory'' command ``cd'' to change the current working directory, and installing the python module as follows: 
+Exports such as this one offered by NASDAQ and API interfaces for stock data are provided by numerous companies. The Yahoo! Finance API is explored below and the Google Finance API was used to perform the stock data extraction for the analysis presented. Additional resources such as stock tracking apps and free exports are available. CSV exports such as the one listed above can be downloaded from Google Finance, Yahoo! Finance, and many others. This publication does not provide a complete list of available resources, but attempts to present a few for comparison. 
+
+Python.org provides a python module to pull stock data from Yahoo! Finance \cite{www-python-yahoo}. The package can be installed through Git by cloning the Git directory where the package is available: https://github.com/lukaszbanasiak/yahoo-finance.git. To install the python package without Git the tape archive can be downloaded from https://pypi.python.org/pypi/yahoo-finance. While Yahoo! Finance is a great resource, the API does not function consistently. To install the python package without Git, the tape archive can be downloaded from https://pypi.python.org/pypi/yahoo-finance. Tape archives allow for compression of multiple files which can be restored to their original format using the tar command in the command line \cite{www-tar}.  Apply the tar options: z - filter archive through gzip, x - extract an archive file, and f - filename of archive, use ``cd'' to change the current working directory, and then install the python module using the package management command ``pip'':
+\begin{mdframed}[style=default]
+\begin{lstlisting}
+tar -zxf yahoo-finance-1.4.0.tar.gz
+cd yahoo-finance
+pip install yahoo-finance
+\end{lstlisting}
+\end{mdframed}
+
+
+\section{Methods}
+\subsection{Data Collection}
+%news articles from Google Alerts for text mining
+
+%daily stock performance
+
+The Python package pandas is an incredible resource 
+%explain Pandas
+The Pandas package has a resource for getting stock market data from free online sources such as Yahoo! mentioned above and Google. To install this package through Git, simply clone the directory, use the ``Change Directory'' command ``cd'' to change the current working directory, and installing the python module as follows: 
 
 \begin{mdframed}[style=default]
 \begin{lstlisting}
-$ git clone git://github.com/lukaszbanasiak/yahoo-finance.git
-$ cd yahoo-finance
+$ git clone git://github.com/pydata/pandas-datareader.git
+$ cd pandas-datareader
 $ python setup.py install
 \end{lstlisting}
 \end{mdframed}
@@ -85,17 +112,15 @@ $ PATH="$PATH:/c/Python27"
 \end{lstlisting}
 \end{mdframed}
 
-To install the python package without Git the tape archive can be downloaded from https://pypi.python.org/pypi/yahoo-finance. Tape archives allow for compression of multiple files which can be restored to their original format using the tar command in the command line \cite{www-tar}.  Apply the tar options: z - filter archive through gzip, x - extract an archive file, and f - filename of archive, use ``cd'' to change the current working directory, and then install the python module using the package management command ``pip'':
+Pandas-datareader and many other packages can also be installed via pip. In example, many additional packages are needed to run a python script using pandas-datareader. These packages can be configured all at once or one at a time as follows:
 \begin{mdframed}[style=default]
 \begin{lstlisting}
-tar -zxf yahoo-finance-1.4.0.tar.gz
-cd yahoo-finance
-pip install yahoo-finance
+pip install --user numpy scipy matplotlib ipython jupyter pandas sympy nose urllib3 chardet idna
 \end{lstlisting}
 \end{mdframed}
 
-%python -m pip install --user numpy scipy matplotlib ipython jupyter pandas sympy nose
-%urllib3 chardet idna
+Unlike the NASDAQ export, using Google as a data source for pandas-datareader requires each attribute to be called seperatly. This means calling the Close Price, Open Price, High Price, etc individually and joining them through code. Also, unlike NASDAQ's export but this time in a positive light, multiple tickers can be passed together. This allows for all historical data to be pulled for many stocks with a single code. 
+
 
 
 
