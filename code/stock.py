@@ -2,6 +2,7 @@ from pandas_datareader import data
 import pandas as pd
 import csv
 import datetime
+from collections import defaultdict
 
 
 def stockData (startDate, endDate, ticker):
@@ -71,16 +72,19 @@ with open('google_alert_data.csv', 'rb') as csvfile:
 		datareader = csv.DictReader(csvfile)
 		writer = csv.DictWriter(f, fieldnames=datareader.fieldnames, extrasaction='ignore', delimiter=',')
 		for line in datareader:
-			ticker = [line['Ticker']]
-			date = line['\xef\xbb\xbfDate']
-			high = findHigh(date, ticker)
-			startPrice = openPrice(start_date, ticker)
-			prctIncrease = round(((high-startPrice)/startPrice)*100,2)
-			if (high > startPrice*1.1):
-				line['W/L?']='W'
-				line['%Change']=prctIncrease
-				print ticker, prctIncrease, high, startPrice
+			if (line['Ticker'] == ''):
+				pass
 			else:
-				line['W/L?']='L'
-				line['%Change']=prctIncrease
-			writer.writerow(line)
+				ticker = [line['Ticker']]
+				date = line['\xef\xbb\xbfDate']
+				high = findHigh(date, ticker)
+				startPrice = openPrice(start_date, ticker)
+				prctIncrease = round(((high-startPrice)/startPrice)*100,2)
+				if (high > startPrice*1.1):
+					line['W/L?']='W'
+					line['%Change']=prctIncrease
+					print ticker, prctIncrease, high, startPrice, date
+				else:
+					line['W/L?']='L'
+					line['%Change']=prctIncrease
+				writer.writerow(line)
