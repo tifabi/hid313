@@ -101,4 +101,15 @@
   url      = {http://www.sciencedirect.com/science/article/pii/S187775031100007X},
 }
 
+@Book{Pocock,
+  title         = {Clinical Trials: A Practical Approach},
+  publisher     = {Wiley},
+  year          = {2013},
+  author        = {Pocock, S.J.},
+  editor        = {Wiley},
+  isbn          = {9781118793923},
+  __markedentry = {[Lab:6]},
+  url           = {https://books.google.com/books?id=TxbTBQAAQBAJ},
+}
+
 @Comment{jabref-meta: databaseType:bibtex;}
