@@ -53,7 +53,8 @@
   publisher = {University of California Press},
   year      = {1982},
   author    = {Braudel, F.},
-  series    = {Civilisation mat{\'e}rielle, {\'e}conomie et capitalisme},
+  series    = {Civilisation matrielle conomie et capitalisme},
+  address   = {California},
   isbn      = {9780520081154},
   date      = {1992-12-11},
   ean       = {9780520081154},
@@ -102,14 +103,156 @@
 }
 
 @Book{Pocock,
-  title         = {Clinical Trials: A Practical Approach},
-  publisher     = {Wiley},
+  title     = {Clinical Trials: A Practical Approach},
+  publisher = {Wiley},
+  year      = {2013},
+  author    = {Pocock, S.J.},
+  address   = {England},
+  isbn      = {9781118793923},
+  url       = {https://books.google.com/books?id=TxbTBQAAQBAJ},
+}
+
+@Book{Friedman,
+  title         = {Fundamentals of Clinical Trials},
+  publisher     = {Springer},
+  year          = {1998},
+  author        = {Friedman, L.M. and Furberg, C. and DeMets, D.L.},
+  address       = {Switzerland},
+  isbn          = {9780387985862},
+  __markedentry = {[Lab:]},
+  lccn          = {98026138},
+  url           = {https://books.google.com/books?id=yzxT0Zh3X3IC},
+}
+
+@Misc{www-quotenasdaq,
+  author       = {NASDAQ},
+  title        = {U.S. Stock Quotae, Charts, and Research},
+  howpublished = {website},
+  year         = {2017},
+  timestamp    = {2017-11-26},
+  url          = {http://www.nasdaq.com/quotes/},
+}
+
+@Misc{www-yahooStock,
+  author       = {Lukaszbanasiak},
+  title        = {Yahoo-finance},
+  howpublished = {Website},
+  month        = {12},
+  year         = {2016},
+  timestamp    = {2017-11-26},
+  url          = {https://github.com/lukaszbanasiak/yahoo-finance},
+}
+
+@Misc{www-pythonYahooStock,
+  author       = {Python.org},
+  title        = {Yahoo-finance 1.4.0},
+  howpublished = {Website},
+  month        = {11},
+  year         = {2016},
+  timestamp    = {2017-11-26},
+  url          = {https://pypi.python.org/pypi/yahoo-finance},
+}
+
+@Misc{www-googleAlerts,
+  author       = {Google},
+  title        = {Google Alerts},
+  howpublished = {Website},
+  year         = {2017},
+  timestamp    = {2017-11-26},
+  url          = {https://www.google.com/alerts},
+}
+
+@Misc{www-chTrib,
+  author       = {Chicago Tribune},
+  title        = {Internet-fueled panic sinks stock},
+  howpublished = {Website},
+  month        = {09},
+  year         = {2008},
+  timestamp    = {2017-11-26},
+  url          = {http://articles.chicagotribune.com/2008-09-09/news/0809090607_1_united-airlines-united-stock-bloomberg},
+}
+
+@Misc{www-goldmanTicker,
+  author       = {Goldman Sachs Global Investment Research},
+  title        = {Equity Ratings},
+  howpublished = {Website},
+  month        = {01},
+  year         = {2017},
+  timestamp    = {2017-11-26},
+  url          = {http://www.goldmansachs.com/research/equity_ratings.html},
+}
+
+@Misc{www-gldmanGlance,
+  author       = {Goldman Sachs},
+  title        = {At A Glance},
+  howpublished = {Website},
+  month        = {01},
+  year         = {2017},
+  timestamp    = {2017-11-26},
+  url          = {http://www.goldmansachs.com/who-we-are/at-a-glance/index.html},
+}
+
+@Misc{www-seekAnalyst,
+  author       = {Seeking Alpha},
+  title        = {How Analyst Recommendations Affect Stock Prices: New Research},
+  howpublished = {Website},
+  month        = {03},
+  year         = {2010},
+  timestamp    = {2017-11-26},
+  url          = {https://seekingalpha.com/article/194435-how-analyst-recommendations-affect-stock-prices-new-research},
+}
+
+@Misc{www-textblob,
+  author       = {Steven Loria},
+  title        = {TextBlob},
+  howpublished = {Website},
+  month        = {01},
+  year         = {2017},
+  timestamp    = {2017-11-26},
+  url          = {http://textblob.readthedocs.io/en/dev/quickstart.html},
+}
+
+@Misc{www-oreilyTensor,
+  author       = {Adit Deshpande},
+  title        = {Perform sentiment analysis with LSTMs, using TensorFlow},
+  howpublished = {Website},
+  month        = {07},
+  year         = {2017},
+  timestamp    = {2017-11-26},
+  url          = {https://www.oreilly.com/learning/perform-sentiment-analysis-with-lstms-using-tensorflow},
+}
+
+@Book{Gassmann,
+  title         = {Leading Pharmaceutical Innovation: Trends and Drivers for Growth in the Pharmaceutical Industry},
+  publisher     = {Springer Berlin Heidelberg},
   year          = {2013},
-  author        = {Pocock, S.J.},
-  editor        = {Wiley},
-  isbn          = {9781118793923},
+  author        = {Gassmann, O. and Reepmeyer, G. and von Zedtwitz, M.},
+  address       = {Germany},
+  isbn          = {9783540247814},
   __markedentry = {[Lab:6]},
-  url           = {https://books.google.com/books?id=TxbTBQAAQBAJ},
+  url           = {https://books.google.com/books?id=4Za-BwAAQBAJ},
+}
+
+@Article{kitchen,
+  author    = {Kitchen, Douglas B. and Decornez, Hélène and Furr, John R. and Bajorath, Jürgen},
+  title     = {Docking and scoring in virtual screening for drug discovery: methods and applications},
+  journal   = {Nature Reviews Drug Discovery},
+  year      = {2004},
+  volume    = {3},
+  pages     = {935},
+  month     = nov,
+  publisher = {Nature Publishing Group},
+  url       = {http://dx.doi.org/10.1038/nrd1549},
+}
+
+@Misc{kaggle,
+  author       = {Wendykan},
+  title        = {DeepLearningMovies},
+  howpublished = {Website},
+  month        = {03},
+  year         = {2017},
+  timestamp    = {2017-11-26},
+  url          = {https://github.com/wendykan/DeepLearningMovies},
 }
 
 @Comment{jabref-meta: databaseType:bibtex;}
