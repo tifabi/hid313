@@ -219,7 +219,17 @@ There are many methods for analysis that could be implemented for this dataset. 
 
 The code that performs random tree analysis starts with some dependencies. Os is imported to allow for command line functionality, the machine learning library sklearn is used because it has a very fast learning rate, KaggleWord2VecUtility is a utility that processes raw text into segments for learning, pandas as mentioned before helps with delimited file manipulation, nltk that already contains a number of words and phrases that are not useful for sentiment analysis importing this library helps to eliminate those elements from the dataset we are training on. To install KaggleWord2VecUtility visit the DeepLearningMovies github directory \cite{kaggle}. 
 
-In this code the Kaggle module removes special characters
+In this code the Kaggle module removes special characters associated with HTML. It was intended to return a URL from the Google Alerts and run the website associates with each alert through beautiful-soup to use the entire article as training data, but the Gmail messages were encoded in such a way that it was not possible to extract the URL from the Google Alert. Nltk removes works such as ``to'' or ``the'' which do not hold any inherent meaning that could be applied to the sentiment analysis. 
+
+
+\begin{figure}[htb]
+\begin{verbatim}
+your code here 
+\end{verbatim}
+\caption{The Sentiment Python code takes the .csv exported by the historical stock script and parses the Snippets to train on the stock script and apply it to more recent stock quotes and Google Alerts}\label{c:sentiment}
+\end{figure}
+
+Figure \ref{c:sentiment} shows the entire code to train on the dataset provided by the historical stock data and Google Alert sentiments.
 
 
 The Python code for verifying the random tree analysis by pulling historical stock data for each ticker analyzed is propelled by pandas\_datareader. The script starts by reading in the .csv created using the random tree analysis script described previously. The data is read in as a dictionary using DictReader and the output file is opened/created right afterwards to allow for writing out with each loop through the starting file's dictionary. For each line the stock ticker and date are passed to a function that returns the highest price of the stock from the date of the received alert to the current date, the stock and ticker are then passed to a function that pulls the opening price on the day that the Google Alert was received. These two prices are compared to verify if the stock increased by 10\% from the time of the alert. The results export to a .csv as shown:
@@ -235,6 +245,15 @@ L,2017-12-02,L,BABA
 \end{lstlisting}
 \end{mdframed}
 This analysis shows the stock ticker ABBV for the pharmaceutical company AbbVie as a ``loser'' twice as two alerts were received about the company on December 3 and 4. As of December 4 ABBV is down 1.08\% post Google Alert receipt. ACAD is the ticker for ACADIA Pharmaceuticals Inc. which is down 1.09\% since receipt of the Google Alert on November 30. Alnylam Pharmaceuticals, Inc (ALNY) is down 1.06\% since December 2. ARGX is down 0.97\% since receipt of the Google Alert but up over 18\% for the prior five days. ARGX did not appear in the training data set so it might be worth while to explore factors that contributed to it's recent increase, if not clinical trials. Interestingly, BABA is a Chinese e-commerce site which is down 2.88\%. This ticker appearing is cause to look closer at the article that was link to the Clinical Trial Alert but returned a retail chain.
+
+\begin{figure}[htb]
+\begin{verbatim}
+your code here 
+\end{verbatim}
+\caption{This Python script takes in the Date and Stock Ticker Symbol from the sentiment .csv that was produced using the sentiment python script provided for performing a random forest analysis on the Google Alert results. This code returns a modified .csv which lists an ``L'' for stocks that did not increase by 10\% from the time the Alert was received to the current date and a ``W'' for stocks that increased by at least 10\%. It also prints the stocks that increased by at least 10\%  and were marked as ``winners'' by the sentiment script.}\label{c:result}
+\end{figure}
+
+Figure \ref{c:result} shows the code to combine the data produced by the random forest analysis and combine it with available historic stock price data.
 
 \subsection{Comparison to Established Analyst Ratings}
 %What did the analysts perdict about the companies analyzed?
