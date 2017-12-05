@@ -23,8 +23,6 @@ from apiclient import discovery
 from apiclient import errors
 from httplib2 import Http
 from oauth2client import file, client, tools
-import base64
-from bs4 import BeautifulSoup
 import re
 import time
 import dateutil.parser as parser

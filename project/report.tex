@@ -66,11 +66,13 @@ The Goldman Sachs Group, Inc. was founded in 1869. The company provides a full s
 
 J P Morgan Chase (JPM) is one of the largest investment banks in the world \cite{www-investBanks}. The company's investment mechanisms include currency, emerging markets, equities, and fixed income. JPM publishes quarterly market insight reports with ``buy'' and ``sell'' ratings for the companies of interest to the firm. Subscribers to JPM's services can even get an audio version of the report which details market trends \cite{www-JPM}.
 
-Barclays was founded in London in 1896. The bank currently serves over fourty-eight million customers and releases stock picks every quarter but for a limited number of stocks
+Barclays was founded in London in 1896. The bank currently serves over fourty-eight million customers and releases stock picks every quarter but for a limited number of stocks \cite{www-investBanks}. Because Barclays is so selective with their stock promotions, only selecting some 50 stocks to support, it is possible that they have a greater impact on the market than other companies in the stock prediction game. 
 
 \subsection{Data Resources}
-%Explain API, Machine Learning Tech,Text Mining  how they are used what they are
+%Text Mining  how they are used what they are
 An Application Programming Interface (API) acts as the middleman between the requesting service and the preforming service. When a user or system submits a request the request is passed to the API which translates it for the processing system then returns the results in a receivable format. This project uses the free Gmail API provided by Google to read and extract data from specific email messages.
+
+Machine learning is the study using computer language to recognize patterns and make data-driven decisions based off of them. It is based on the theories of statistics. Bayes' Theorem gives the probability of an event occurring given some evidence. Bayes Theorem is vital in Machine Learning because it provides evidence to how probabilities should be updated given new evidence. Markov's theory describes properties that can be predicted based only on past events. Some of the first learning programs were designed t play boardgames such as checkers and chess \cite{www-wikiMachine}.
 
 NASDAQ's website provides historical stock performance data that can be exported as a Comma-Separated Values (CSV) file. The disadvantage of NASDAQ's free export service is that each stock must be exported separately. The free quote service can be accessed at \cite{www-quotenasdaq}. NASDAQ provides API services for subscribers starting at \$5,000 per year \cite{www-nasdaq-sub}. Access to NASDAQ's API services can also be granted through corporate sponsorship. NASDAQ's free CSV export services were used to collect initial project data. In example, the stock history for Celsion Corporation during the week of August 21, 2017 is shown.
 
@@ -138,27 +140,23 @@ GMAIL.users().messages().get(userId='me', id=m_id).execute()
 The user ID is the same as described previously with the ID being the current message ID within the loop. This execute command returns a dictionary which is parsed fron ``payload'' to ``headers'' to extract the Date. The Snippet is also grabbed from the message dictionary and along with the Date, passed to a final list to be written to a .csv file. 
 
 \begin{figure}[htb]
+\begin{lstlisting}
 \begin{verbatim}
 '''
 Tiffany Fabianac Modified code from:
 Reading GMAIL using Python
     - https://github.com/abhishekchhibber/Gmail-Api-through-Python
 	- Abhishek Chhibber
-'''
 
-'''
 This script does the following:
 - Go to Gmal inbox
 - Find and read all the Google Alert messages
 - Extract details (Date, Snippet) and export them to a .csv file / DB
-'''
 
-'''
 Before running this script, the user should get the authentication by following 
 the link: https://developers.google.com/gmail/api/quickstart/python
 Also, client_secret.json should be saved in the same directory as this file
 '''
-
 # Importing required libraries
 from apiclient import discovery
 from apiclient import errors
@@ -214,8 +212,6 @@ for mssg in mssg_list:
 
     temp_dict['Snippet'] = message['snippet']
 
-
-
     final_list=json.dumps(temp_dict)  # This will create a dictonary item in the final list
     re.sub(r'\u22c5', '', final_list)
     print final_list
@@ -228,6 +224,7 @@ with open("API_out.csv", "a") as f:
     for x in final_list:
         writer.writerow(x)
 \end{verbatim}
+\end{lstlisting}
 \caption{The Google API Python code calls the Gmail APIs Messages.list which lists reduced properties of Gmail messages and Messages. Get which returns the messages themselves. Lists is used to query the messages that are wanted based on the defined criteria: userId=me, labelIds=INBOX], q=from:googlealerts-noreply@google.com. Get then retrieves the messages identified in using List and returns the messages content for Date and Snippet.}\label{c:googleapi}
 \end{figure}
 
@@ -270,6 +267,7 @@ If the high price is 10\% higher than the starting price the line is given a ``W
 
 
 \begin{figure}[htb]
+\begin{lstlisting}
 \begin{verbatim}
 '''
 Collect Historical Stock Data
@@ -335,9 +333,6 @@ def openPrice (startDate, ticker):
 	open = result.iloc[0]['open']
 	return open
 
-
-
-
 ticker = ['CLSN']
 start_date = '2017-08-21'
 #if (findHigh(start_date, ticker) > (openPrice(start_date, ticker)*1.1)):
@@ -369,6 +364,7 @@ with open('google_alert_data.csv', 'rb') as csvfile:
 					line['%Change']=prctIncrease
 				writer.writerow(line) 
 \end{verbatim}
+\end{lstlisting}
 \caption{This Python script takes in the Date, Stock Ticker Symbol, and Snippet from the Google API .csv that was produced using both manual mining of the stock symbols and the python script provided for getting the Date and Snippet from Gmail. This code returns a modified .csv which lists an ``L'' for stocks that did not increase by 10\% in five days and a ``W'' for stocks that increased by at least 10\%. It also prints the stocks that increased by at least 10\% along with the highest price over 5 days, the starting price on the day that the Google Alert was received, and the percent change.}\label{c:stock}
 \end{figure}
 
@@ -405,7 +401,9 @@ Ticker prctChange High Open Date
 
 
 \section{Results}
-There are many methods for analysis that could be implemented for this dataset. Time series prediction could be used to identify trends in the stocks of interest \cite{ARMANO}. Regression analysis is very common to identify key factors that contribute to the accuracy of a  prediction. TextBlob sentiment analysis allows for sentiment analysis to be performed in as little as four lines of code. TextBlob returns a number between -1 and 1 for how negative (-1) or positive (1) a defined sentiment or group of text is \cite{www-textblob}. Tensorflow is another popular way of creating sentiment analysis which takes an input of words with the intent of returning a sentiment of positive, negative, or neutral. In order to do this Tensorflow uses a build in learning and training set called tflearn to compare previously established sentiments. For example, words like ``love'' and ``happy'' return a positive sentiment while words like ``hate'' and ``sad'' return a negative sentiment \cite{www-oreilyTensor}. %Random Trees
+There are many methods for analysis that could be implemented for this dataset. Time series prediction could be used to identify trends in the stocks of interest \cite{ARMANO}. Regression analysis is very common to identify key factors that contribute to the accuracy of a  prediction. TextBlob sentiment analysis allows for sentiment analysis to be performed in as little as four lines of code. TextBlob returns a number between -1 and 1 for how negative (-1) or positive (1) a defined sentiment or group of text is \cite{www-textblob}. Tensorflow is another popular way of creating sentiment analysis which takes an input of words with the intent of returning a sentiment of positive, negative, or neutral. In order to do this Tensorflow uses a build in learning and training set called tflearn to compare previously established sentiments. For example, words like ``love'' and ``happy'' return a positive sentiment while words like ``hate'' and ``sad'' return a negative sentiment \cite{www-oreilyTensor}. 
+
+Random Forest algorithms create decision trees for each variable. Each tree represents the sequence of events or decisions that led to the outcome or result. With each branch or step through the decision tree a probability is calculated for the outcome and the collection of trees work are combined to create multiple ``regression lines'' that are used to predict an outcome when presented with new data that does not have an outcome. The model or collection of trees form what is called a random forest can then be used to predict sentiment or outcomes. For stock data or other time series datasets, it is essential to continuously re-train the model to perform at its best. As mentioned above it is possible for additional models and even the model itself to begin to influence the prediction model. 
 
 The code that performs random tree analysis starts with some dependencies. Os is imported to allow for command line functionality, the machine learning library sklearn is used because it has a very fast learning rate, KaggleWord2VecUtility is a utility that processes raw text into segments for learning, pandas as mentioned before helps with delimited file manipulation, nltk that already contains a number of words and phrases that are not useful for sentiment analysis importing this library helps to eliminate those elements from the dataset we are training on. To install KaggleWord2VecUtility visit the DeepLearningMovies github directory \cite{kaggle}. 
 
@@ -423,6 +421,7 @@ A model is easily created from the defined bag of words using sklearn's fit\_tra
 
 
 \begin{figure}[htb]
+\begin{lstlisting}
 \begin{verbatim}
 '''
 Use KaggleWord to produce random forest analysis
@@ -476,6 +475,7 @@ if __name__ == '__main__':
     output.to_csv(os.path.join(os.path.dirname(__file__), 'randomForestResults.csv'), index=False, quoting=3)
     print "Wrote results to randomForestResults.csv"
 \end{verbatim}
+\end{lstlisting}
 \caption{The Sentiment Python code takes the .csv exported by the historical stock script and parses the Snippets to train on the stock script and apply it to more recent stock quotes and Google Alerts}\label{c:sentiment}
 \end{figure}
 
@@ -497,14 +497,13 @@ L,2017-12-02,L,BABA
 This analysis shows the stock ticker ABBV for the pharmaceutical company AbbVie as a ``loser'' twice as two alerts were received about the company on December 3 and 4. As of December 4 ABBV is down 1.08\% post Google Alert receipt. ACAD is the ticker for ACADIA Pharmaceuticals Inc. which is down 1.09\% since receipt of the Google Alert on November 30. Alnylam Pharmaceuticals, Inc (ALNY) is down 1.06\% since December 2. ARGX is down 0.97\% since receipt of the Google Alert but up over 18\% for the prior five days. ARGX did not appear in the training data set so it might be worth while to explore factors that contributed to it's recent increase, if not clinical trials. Interestingly, BABA is a Chinese e-commerce site which is down 2.88\%. This ticker appearing is cause to look closer at the article that was link to the Clinical Trial Alert but returned a retail chain.
 
 \begin{figure}[htb]
+\begin{lstlisting}
 \begin{verbatim}
 '''
 Validate random forest analysis
 Tiffany Fabianac Modified code from:
     - http://pandas-datareader.readthedocs.io/en/latest/remote_data.html
 '''
-
-
 from pandas_datareader import data
 import pandas as pd
 import csv
@@ -512,7 +511,6 @@ import string
 import datetime
 from collections import defaultdict
 from pandas.tseries.offsets import BDay
-
 
 def stockData (startDate, endDate, ticker):
 	# Define which online source one should use
@@ -540,9 +538,7 @@ def stockData (startDate, endDate, ticker):
 	result = pd.concat([close, volume, op, high, low], axis=1, join='inner')
 	result.columns=['close','volume','open','high','low']
 	return result
-
-
-    
+   
 def findHigh (startDate, ticker):
 
 	# Get date and five days after
@@ -567,7 +563,6 @@ def openPrice (endDate, ticker):
 		open = result.iloc[0]['open']
 		return open
 
-
 with open('randomForestResults.csv', 'rb') as csvfile:
 	with open('resultsData.csv','wb') as f:
 		datareader = csv.DictReader(csvfile)
@@ -589,6 +584,7 @@ with open('randomForestResults.csv', 'rb') as csvfile:
 					line['Accuracy']='L'
 				writer.writerow(line)
 \end{verbatim}
+\end{lstlisting}
 \caption{This Python script takes in the Date and Stock Ticker Symbol from the sentiment .csv that was produced using the sentiment python script provided for performing a random forest analysis on the Google Alert results. This code returns a modified .csv which lists an ``L'' for stocks that did not increase by 10\% from the time the Alert was received to the current date and a ``W'' for stocks that increased by at least 10\%. It also prints the stocks that increased by at least 10\%  and were marked as ``winners'' by the sentiment script.}\label{c:result}
 \end{figure}
 
@@ -596,12 +592,19 @@ Figure \ref{c:result} shows the code to combine the data produced by the random 
 
 \subsection{Comparison to Established Analyst Ratings}
 %What did the analysts perdict about the companies analyzed?
+One of the important aspects of professional analyst ratings is that the intent is to identify the best long term investments. This project only looked at short term success over a period of five days. Further research should refine additional models to compare success in shorter term, one day, and longer term, six months to a year or more.
 
-%Goldman
-%Chase
-ARRY is a bio-pharmaceutical company that was call out in the training set as a ``winner'' for August 22. J P Morgan Chase \& Co confirmed a ``buy'' rating for ARRY on September 11, three weeks after it was identified by this model as a ``winner''.
+ARRY is a bio-pharmaceutical company that was call out in the training set as a ``winner'' for August 22. J P Morgan Chase \& Co confirmed a ``buy'' rating for ARRY on September 11, three weeks after it was identified by this model as a ``winner''. Goldman Sachs increase their buy in to ARRY  on October 22 by 33\%. 
 
-%Morningstar
+ABBV, a predicted ``losers'', is marked ``Neutral'' by JPM. 
+
+ACAD, a predicted ``losers'', is marked as ``Neutral by Goldman Sachs.
+
+ALNY, a predicted ``losers'', is marked as ``Buy'' by JPM, Goldman Sachs, and Barclays. These analyst ratings may indicate that the model is not a good indicator of long term success as the analyst ratings suggest. This requires greater research which should include increasing the historic interval from five days to six months or more.
+
+ARGX, a predicted ``losers'', is ranked as ``Underweight'' by Barclay, as recently upgraded to ``Buy'' by Goldman Sachs, and has been downgraded to ``Neutral'' by JPM. 
+
+BABA, a predicted ``losers'', is also marked as a ``buy'' by all investing firms and reaffirms that additional data is needed for long term investments.
 
 
 \section{Conclusion}
@@ -609,7 +612,11 @@ The codes provided for this project take Google Alert data directly from a Gmail
 
 The analysis presented herein represents the possible impact of sentiment expressed in news reports about clinical trials has the potential to predict the movement of stock prices. Further analysis should work with a bigger data set, possibly by increasing the number of configured Google Alerts and certainly by identifying how to pull stock tickers from the Snippets. An idea to do this might be to create a dictionary of stock tickers and company names and compare this dictionary with the sentiments. This could then pull out any company names or tickers defined in the Snippets and associate the relevant ticker symbol. 
 
-Next steps might also include more in depth analysis on the timing of stock increases by changing the historical stock data from five days after an alert is received to two days or one day. This would allow for a more immediate reflection on the cause and effect of the reported news. This project was run on ubuntu and took approximately four minutes to process after Nltk was downloaded. Nltk took some seven minutes to download for the first run. Future projects, with bigger datasets, could be run from cloud environments like AWS, Chromeleon, or the server node of a big red environment. 
+Next steps should also include more in depth analysis on the timing of stock increases by changing the historical stock data from five days after an alert is received to two days or one day. This would allow for a more immediate reflection on the cause and effect of the reported news. The scope should also be scaled to consider historical data over six months or more and compared again to the results of dedicated investor houses.
+
+This project was run on ubuntu and took approximately four minutes to process from pulling Google Alerts to producing the analysis after Nltk was downloaded. Nltk took some seven minutes to download for the first run. Future projects, with bigger datasets, could be run from cloud environments like AWS, Chromeleon, or the server node of a big red environment. 
+
+Continued improvement of the code would test running Kaggle and Nltk from the Google API script to reduce the size of the output file by eliminating stop words and special characters before the first export is even produced. This process would also improve speed with the historical stock price collection script as the Snippets are also written here.
 
 
 \begin{acks}
