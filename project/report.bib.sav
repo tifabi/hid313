@@ -255,4 +255,22 @@
   url          = {https://github.com/wendykan/DeepLearningMovies},
 }
 
+@Misc{www-investBanks,
+  author       = {Shobhit Seth},
+  title        = {The World's Top 10 Investment Banks},
+  howpublished = {Website},
+  year         = {2013},
+  timestamp    = {2017-12-04},
+  url          = {https://www.investopedia.com/articles/investing/111114/worlds-top-10-investment-banks.asp},
+}
+
+@Misc{www-JPM,
+  author       = {J.P.Morgan Asset Management},
+  title        = {Guide to the Markets},
+  howpublished = {Website},
+  year         = {2017},
+  timestamp    = {2017-12-04},
+  url          = {https://am.jpmorgan.com/us/en/asset-management/gim/adv/insights/guide-to-the-markets/viewer},
+}
+
 @Comment{jabref-meta: databaseType:bibtex;}

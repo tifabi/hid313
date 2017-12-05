@@ -12,7 +12,7 @@
 \mdfdefinestyle{default}{%
 backgroundcolor=light-gray, roundcorner=10pt,
 leftmargin=1, rightmargin=1, innerleftmargin=10, 
-innertopmargin=2,innerbottommargin=2, outerlinewidth=1,
+innertopmargin=1,innerbottommargin=1, outerlinewidth=1,
 linecolor=light-gray}
 \lstset{breaklines=true, basicstyle=\tiny}
 
@@ -31,7 +31,7 @@ linecolor=light-gray}
  \renewcommand{\shortauthors}{T. Fabianac} 
 
 \begin{abstract}
-While many relate stock market trading to gambling, successful traders have turned stock picking into a science. The likes of Warren Buffet tell us that successful stock buying is all in the research. So what kind of research aids in the prediction of companies within the highly volatile pharmaceutical market? The use of available, open-source APIs and Google Alerts are used to explore if clinical trial results can directly impact stock performance in small, mid, and large cap pharmaceutical companies. Key words and/or phrases in results and related news articles are identified as possible predictors of market effect. As well as a comparison to already established analyst ratings from Barclays, Goldman, Morningstar, or others which have already been shown to impact stock performance.
+While many relate stock market trading to gambling, successful traders have turned stock picking into a science. The likes of Warren Buffet tell us that successful stock buying is all in the research. So what kind of research aids in the prediction of companies within the highly volatile pharmaceutical market? The use of available, open-source APIs and Google Alerts are used to explore if clinical trial results can directly impact stock performance in small, mid, and large cap pharmaceutical companies. Key words and/or phrases in results and related news articles are identified as possible predictors of market effect. As well as a comparison to already established analyst ratings from Barclays, Goldman, and J P Morgan Chase which have already been shown to impact stock performance.
 \end{abstract}
 
 \keywords{Big Data, HID313, i523, Stock Market, Pharmaceutical}
@@ -47,14 +47,10 @@ A major complexity in creating algorithms for the stock market is that the marke
 
 How big of an impact can news articles have on the stock market? In September 2008, an article published on a South Florida News website reported that United airlines had files Chapter 11 bankruptcy. The news struck so hard that United's stock plummeted 75\% from \$12 to \$3. Interestingly enough, the article was just about six years old and had originally been published by the Chicago Tribune in December 2002. Even though the report was literally ``old news'' it did not prevent massive panic from investors \cite{www-chTrib}.
 
-
-
 \subsection{Pharmaceutical Sector}
 The pharmaceutical industry has evolved around the need to establish drugs and treatment options for diseases. Research and development within pharmaceutical companies range from compound identification to disease characterization. This market is directly affected by the results of drug tests such as clinical trials and the establishment of new treatment options. Market growth also comes from manufacturing and licensing of drugs and treatment methods. Innovation is the key driver of this industry \cite{Gassmann}.
 
 Like the financial sector trying to predict the stock market, the pharmaceutical industry has devoted resources to developing prediction algorithms and machine learning systems. The efforts of drug manufacturers are aimed to create a system that consistently predicts or aids in identifying drug targets. One such approac is the development or virtual screening for drug discovery meant to reduce the experimental failures associated with high throughput screening. High throughout screening is carried out to test many chemicals, molecules, compounds, proteins, hormones, viral vectors, etc all at once on large grids or plates which can test many different treatment combinations all together. Large costs and big data sets are associated with high throughput screening which is now becoming virtual with the help of advanced molecular profiling \cite{kitchen}.
-
-
 
 \subsection{Clinical Trials}
 A clinical trial is a planned experiment involving patients with the intent to elucidate an appropriate or effective treatment option(s) for the population of patients afflicted with the same medical condition. A big concern with clinical trials is that inferences are made for the entire population of patients from a relatively small sample size \cite{Pocock}. One of the first clinical trials recorded was carried out in the eighteenth century to evaluate six treatments on  twelve patients with scurvy. Two patients that were given oranges and lemons recovered very quickly. Fisher introduced the concept of randomization in the nineteenth century \cite{Friedman}.
@@ -64,20 +60,17 @@ Clinical trials have four defined phases. Phase I trials identify how well a dru
 Clinical trial designs have been very slow to evolve due to restricts enforced by governing agencies such as the US Food and Drug Administration (FDA) and the Centers for Disease Control and Prevention (CDC). While these restrictions are intended to minimize patient risk, they also greatly restrict the potential of clinical trial data collection. Other limiting factors include  difficulty enrolling high quality participants for each trial phase, problems monitoring how well patients are following protocol, difficulty sorting out ``the placebo effect'' or the ability for patients to feel as if they are recovering without actually receiving treatment, and overall minimizing poor quality of data \cite{Friedman}. 
 
 \subsection{Established Analyst Ratings}
-%Where did these rankings come from?
 Companies within the financial sector often publish rankings of the top stocks that the company invests in. The ratings are a way to attract investors with proof that the company is diligently analyzing the market and ``picking winners''. These published rankings have been show to boost or deflate rallies behind particular stocks that are added or removed for these prestigious lists \cite{www-seekAnalyst}. 
 
 The Goldman Sachs Group, Inc. was founded in 1869. The company provides a full stack portfolio of banking and investment services. Goldman Sachs career website states that the company is driven to achieve superior returns for their clients which include pension funds, hedge funds, and mutual funds. The company boasts that their research analysts are curious and creative \cite{www-gldmanGlance}. Goldman Sachs Global Investor Research group provides stock ratings on a scale of Buy, Neutral, and Sell \cite{www-goldmanTicker}. 
 
-%Chase
+J P Morgan Chase (JPM) is one of the largest investment banks in the world \cite{www-investBanks}. The company's investment mechanisms include currency, emerging markets, equities, and fixed income. JPM publishes quarterly market insight reports with ``buy'' and ``sell'' ratings for the companies of interest to the firm. Subscribers to JPM's services can even get an audio version of the report which details market trends \cite{www-JPM}.
 
-%Morningstar
-
-
+Barclays was founded in London in 1896. The bank currently serves over fourty-eight million customers and releases stock picks every quarter but for a limited number of stocks
 
 \subsection{Data Resources}
 %Explain API, Machine Learning Tech,Text Mining  how they are used what they are
-An Application Programming Interface (API) acts as the middleman between the requesting service and the preforming service. When a user or system submits a request the request is passed to the API which translates it for the processing system then returns the results in a receivable format. 
+An Application Programming Interface (API) acts as the middleman between the requesting service and the preforming service. When a user or system submits a request the request is passed to the API which translates it for the processing system then returns the results in a receivable format. This project uses the free Gmail API provided by Google to read and extract data from specific email messages.
 
 NASDAQ's website provides historical stock performance data that can be exported as a Comma-Separated Values (CSV) file. The disadvantage of NASDAQ's free export service is that each stock must be exported separately. The free quote service can be accessed at \cite{www-quotenasdaq}. NASDAQ provides API services for subscribers starting at \$5,000 per year \cite{www-nasdaq-sub}. Access to NASDAQ's API services can also be granted through corporate sponsorship. NASDAQ's free CSV export services were used to collect initial project data. In example, the stock history for Celsion Corporation during the week of August 21, 2017 is shown.
 
@@ -107,10 +100,22 @@ While Yahoo! Finance is a great resource, the API does not function consistently
 
 \section{Methods}
 \subsection{Data Collection}
-%news articles from Google Alerts for text mining
 Data collection was initiated with the use of Google Alerts. Google allows for alerts to be configures from Google \cite{www-googleAlerts}. Gmail users can configure these alerts to be sent through email when news or other types of articles pertaining to a defined subject are released to the web. The Google Alerts for this project were: ``Phase III Trial'', ``Phase 3 Trial'', and ``Meets Primary End Point''. When these phrases are detected by Google, the link to the webpage and a short description are sent via email to the configured email address. On busy days, an excess of 100 alerts were received for these alert phrases. On slow days, only a couple alerts were received.  Only very infrequently were no messages received. 
 
-To collect data from the received Google Alerts without too much manual clicking, Gmail has an available API which allows users to pull data from a Gmail account. To start using the Gmail API, a user must first configure their Authentication credentials through Google's developer console. Once credentials are received in the form of a JSON file, the Google Client Library can be installed using pip to install google-api-python-client. The Google Development team has provided a quickstart file which facilitates the first authentication run. Running this quick start guide will open a browser window and prompt the user to log into a Gmail account. The user then accepts the authorization and can run the Gmail API from command line or other compilers. 
+To collect data from the received Google Alerts without too much manual clicking, Gmail has an available API which allows users to pull data from a Gmail account. To start using the Gmail API, a user must first configure their Authentication credentials through Google's developer console. The JSON format is shown:
+\begin{mdframed}[style=default]
+\begin{lstlisting}
+{"installed":{"client_id":"###.apps.googleusercontent.com",
+			"project_id":"###",
+			"auth_uri":"https://accounts.google.com/o/oauth2/auth",
+			"token_uri":"https://accounts.google.com/o/oauth2/token",
+			"auth_provider_x509_cert_url":"https://www.googleapis.com/oauth2/v1/certs",
+			"client_secret":"###",
+			"redirect_uris":["urn:ietf:wg:oauth:2.0:oob",
+				"http://localhost"]}}
+\end{lstlisting}
+\end{mdframed}
+Once credentials are received in the form of a JSON file, the Google Client Library can be installed using pip to install google-api-python-client. The Google Development team has provided a quickstart file which facilitates the first authentication run. Running this quick start guide will open a browser window and prompt the user to log into a Gmail account. The user then accepts the authorization and can run the Gmail API from command line or other compilers. 
 
  Headlines of the received alerts, usually the title of the article and the first couple of lines, are referred to as ``Snippets'' by Google's Gmail API. This project pulled only the Snippets and the date from the Google Alerts. The Snippets do not contain the whole article but may still provide enough evidence of sentiment for further analysis and prediction of the associated stock. Unfortunately, no solution was identified for extracting the appropriate stock symbols from the Snippets so this task had to be performed manually. 
 
@@ -132,7 +137,94 @@ The user ID is the same as described previously with the ID being the current me
 
 \begin{figure}[htb]
 \begin{verbatim}
-your code here 
+'''
+Tiffany Fabianac Modified code from:
+Reading GMAIL using Python
+    - https://github.com/abhishekchhibber/Gmail-Api-through-Python
+	- Abhishek Chhibber
+'''
+
+'''
+This script does the following:
+- Go to Gmal inbox
+- Find and read all the Google Alert messages
+- Extract details (Date, Snippet) and export them to a .csv file / DB
+'''
+
+'''
+Before running this script, the user should get the authentication by following 
+the link: https://developers.google.com/gmail/api/quickstart/python
+Also, client_secret.json should be saved in the same directory as this file
+'''
+
+# Importing required libraries
+from apiclient import discovery
+from apiclient import errors
+from httplib2 import Http
+from oauth2client import file, client, tools
+import base64
+from bs4 import BeautifulSoup
+import re
+import time
+import dateutil.parser as parser
+from datetime import datetime
+import datetime
+import csv
+import json
+import io
+
+# Creating a storage.JSON file with authentication details
+SCOPES = 'https://www.googleapis.com/auth/gmail.modify'  # we are using modify and not readonly, as we will be marking the messages Read
+store = file.Storage('storage.json')
+creds = store.get()
+if not creds or creds.invalid:
+    flow = client.flow_from_clientsecrets('client_secret.json', SCOPES)
+    creds = tools.run_flow(flow, store)
+GMAIL = discovery.build('gmail', 'v1', http=creds.authorize(Http()))
+
+user_id = 'me'
+label_id_one = 'INBOX'
+
+# Getting all the unread messages from Inbox
+# labelIds can be changed accordingly
+alert_msgs = GMAIL.users().messages().list(userId='me', labelIds=[label_id_one], q='from:googlealerts-noreply@google.com').execute()
+
+# We get a dictonary. Now reading values for the key 'messages'
+mssg_list = alert_msgs['messages']
+
+final_list = []
+
+for mssg in mssg_list:
+    temp_dict = {}
+    m_id = mssg['id']  # get id of individual message
+    message = GMAIL.users().messages().get(userId=user_id, id=m_id).execute()  # fetch the message using API
+    payld = message['payload']  # get payload of the message
+    headr = payld['headers']  # get header of the payload
+
+    for two in headr:  # getting the date
+        if two['name'] == 'Date':
+            msg_date = two['value']
+            date_parse = (parser.parse(msg_date))
+            m_date = (date_parse.date())
+            temp_dict['Date'] = str(m_date)
+        else:
+            pass
+
+    temp_dict['Snippet'] = message['snippet']
+
+
+
+    final_list=json.dumps(temp_dict)  # This will create a dictonary item in the final list
+    re.sub(r'\u22c5', '', final_list)
+    print final_list
+
+# exporting the values as .csv
+#final_list = json.loads(final_list)
+with open("API_out.csv", "a") as f:
+    header=["Date", "Snippet"]
+    writer = csv.DictWriter(f, fieldnames=header, delimiter=',')
+    for x in final_list:
+        writer.writerow(x)
 \end{verbatim}
 \caption{The Google API Python code calls the Gmail APIs Messages.list which lists reduced properties of Gmail messages and Messages. Get which returns the messages themselves. Lists is used to query the messages that are wanted based on the defined criteria: userId=me, labelIds=INBOX], q=from:googlealerts-noreply@google.com. Get then retrieves the messages identified in using List and returns the messages content for Date and Snippet.}\label{c:googleapi}
 \end{figure}
@@ -177,7 +269,103 @@ If the high price is 10\% higher than the starting price the line is given a ``W
 
 \begin{figure}[htb]
 \begin{verbatim}
-your code here 
+'''
+Collect Historical Stock Data
+Tiffany Fabianac Modified code from:
+    - http://pandas-datareader.readthedocs.io/en/latest/remote_data.html
+'''
+
+
+from pandas_datareader import data
+import pandas as pd
+import csv
+import datetime
+from collections import defaultdict
+
+
+def stockData (startDate, endDate, ticker):
+	# Define which online source one should use
+	data_source = 'google'
+
+	# User pandas_reader.data.DataReader to load the desired data.
+	panel_data = data.DataReader(ticker, data_source, startDate, endDate)
+
+	close = panel_data.ix['Close']
+	volume = panel_data.ix['Volume']
+	op = panel_data.ix['Open']
+	high = panel_data.ix['High']
+	low = panel_data.ix['Low']
+
+	# Getting all weekdays between 01/01/2017 and 12/31/2017
+	all_weekdays = pd.date_range(start=startDate, end=endDate, freq='B')
+
+	# Align new set of dates
+	close = close.reindex(all_weekdays)
+	volume = volume.reindex(all_weekdays)
+	op = op.reindex(all_weekdays)
+	high = high.reindex(all_weekdays)
+	low = low.reindex(all_weekdays)
+
+	result = pd.concat([close, volume, op, high, low], axis=1, join='inner')
+	result.columns=['close','volume','open','high','low']
+
+	return result
+	
+    
+def findHigh (startDate, ticker):
+
+	# Get date and five days after
+	temp_date = datetime.datetime.strptime(startDate, "%Y-%m-%d")
+	endDate = temp_date + datetime.timedelta(days=5)
+
+	
+	result = stockData(startDate, endDate, ticker)
+
+
+	tempHigh = result.nlargest(1,'high')
+	high = tempHigh.iloc[0]['high']
+
+	return high
+
+def openPrice (startDate, ticker):
+	
+	result = stockData(startDate, startDate, ticker)
+	open = result.iloc[0]['open']
+	return open
+
+
+
+
+ticker = ['CLSN']
+start_date = '2017-08-21'
+#if (findHigh(start_date, ticker) > (openPrice(start_date, ticker)*1.1)):
+#	print ticker, "Bingo"
+#else:
+#	print ticker, "Loser"
+#print findHigh(start_date, ticker)
+#print openPrice(start_date, ticker)
+
+with open('google_alert_data.csv', 'rb') as csvfile:
+	with open('outfile.csv','a') as f:
+		datareader = csv.DictReader(csvfile)
+		writer = csv.DictWriter(f, fieldnames=datareader.fieldnames, extrasaction='ignore', delimiter=',')
+		for line in datareader:
+			if (line['Ticker'] == ''):
+				pass
+			else:
+				ticker = [line['Ticker']]
+				date = line['\xef\xbb\xbfDate']
+				high = findHigh(date, ticker)
+				startPrice = openPrice(start_date, ticker)
+				prctIncrease = round(((high-startPrice)/startPrice)*100,2)
+				if (high > startPrice*1.1):
+					line['W/L?']='W'
+					line['%Change']=prctIncrease
+					print ticker, prctIncrease, high, startPrice, date
+				else:
+					line['W/L?']='L'
+					line['%Change']=prctIncrease
+				writer.writerow(line) 
 \end{verbatim}
 \caption{This Python script takes in the Date, Stock Ticker Symbol, and Snippet from the Google API .csv that was produced using both manual mining of the stock symbols and the python script provided for getting the Date and Snippet from Gmail. This code returns a modified .csv which lists an ``L'' for stocks that did not increase by 10\% in five days and a ``W'' for stocks that increased by at least 10\%. It also prints the stocks that increased by at least 10\% along with the highest price over 5 days, the starting price on the day that the Google Alert was received, and the percent change.}\label{c:stock}
 \end{figure}
@@ -219,12 +407,72 @@ There are many methods for analysis that could be implemented for this dataset. 
 
 The code that performs random tree analysis starts with some dependencies. Os is imported to allow for command line functionality, the machine learning library sklearn is used because it has a very fast learning rate, KaggleWord2VecUtility is a utility that processes raw text into segments for learning, pandas as mentioned before helps with delimited file manipulation, nltk that already contains a number of words and phrases that are not useful for sentiment analysis importing this library helps to eliminate those elements from the dataset we are training on. To install KaggleWord2VecUtility visit the DeepLearningMovies github directory \cite{kaggle}. 
 
-In this code the Kaggle module removes special characters associated with HTML. It was intended to return a URL from the Google Alerts and run the website associates with each alert through beautiful-soup to use the entire article as training data, but the Gmail messages were encoded in such a way that it was not possible to extract the URL from the Google Alert. Nltk removes works such as ``to'' or ``the'' which do not hold any inherent meaning that could be applied to the sentiment analysis. 
+In this code the Kaggle module removes special characters associated with HTML. It was intended to return a URL from the Google Alerts and run the website associates with each alert through beautiful-soup to use the entire article as training data, but the Gmail messages were encoded in such a way that it was not possible to extract the URL from the Google Alert. Nltk removes works such as ``to'' or ``the'' which do not hold any inherent meaning that could be applied to the sentiment analysis. The cleaning process converts the first Snippet as follows:
+\begin{mdframed}[style=default]
+\begin{lstlisting}
+Abeona Therapeutics - String Of Pearls Strategy With Numerous Catalysts And A Lot Of Upside
+abeona therapeutics string pearls strategy numerous catalysts lot upside
+\end{lstlisting}
+\end{mdframed}
+
+Once the Snippets are free of special characters and non-sentiment words, they are parsed into a vector. This process creates what is called a ``Bag of Words'' by creating a dictionary with the count of each word in the text. This is also called tokenization or vectorizing and is performed easily with the sklearn package's countVectorizer process. Here the analyzer is set to word, there is no defined tokenizer, pre-processor, or stop words needed so these are set to ``None''. The maximum number of features controls the limit on the maximum number of words and frequencies contained in the bag of words. 
+
+A model is easily created from the defined bag of words using sklearn's fit\_transform which is converted to an array. The method for classification is a random forest which builds decision trees for each variable in the dataset. In example, the first Snippet describes a ``winning'' variable and contains the word ``Upside'' if other Snippets contain the word ``Upside'' it might be indicative of a ``winning'' classifier. The last step calculates predictions for the new dataset based on the established classifiers. This is simple done with the RandomForestClossifier's predict function.
 
 
 \begin{figure}[htb]
 \begin{verbatim}
-your code here 
+'''
+Use KaggleWord to produce random forest analysis
+Tiffany Fabianac Modified code from:
+    - https://youtu.be/AJVP96tAWxw
+    - Siraj Raval
+'''
+
+
+import os
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.ensemble import RandomForestClassifier
+from KaggleWord2VecUtility import KaggleWord2VecUtility
+import pandas as pd
+import nltk
+
+if __name__ == '__main__':
+    train = pd.read_csv(os.path.join(os.path.dirname(__file__), 'labeledTrainData.csv'), header=0, delimiter=",", quoting=3)
+    test = pd.read_csv(os.path.join(os.path.dirname(__file__), 'testData.csv'), header=0, delimiter=",", quoting=3)
+
+    print 'The first review is:'
+    print train['Snippit'][0]
+    raw_input("Press Enter to continue...")
+
+    print 'Download text data sets'
+    nltk.download()
+    clean_train_reviews = []
+    print "Cleaning and parsing the training set...\n"
+    for i in xrange(0, len(train['Snippit'])):
+        clean_train_reviews.append(" ".join(KaggleWord2VecUtility.review_to_wordlist(train['Snippit'][i], True)))
+
+    print "Creating the bag of words...\n"
+    vectorizer = CountVectorizer(analyzer="word", tokenizer=None, preprocessor=None, stop_words=None, max_features=5000)
+    train_data_features = vectorizer.fit_transform(clean_train_reviews)
+    train_data_features = train_data_features.toarray()
+
+    print "Training Random forest..."
+    forest = RandomForestClassifier(n_estimators=100)
+    forest = forest.fit(train_data_features, train['W/L?'])
+    clean_test_reviews=[]
+
+    print "Cleaning and parsing \n"
+    for i in xrange(0,len(test['Snippit'])):
+        clean_test_reviews.append(" ".join(KaggleWord2VecUtility.review_to_wordlist(test['Snippit'][i], True)))
+    test_data_features = vectorizer.transform(clean_test_reviews)
+    test_data_features = test_data_features.toarray()
+
+    print "Predicting test labels...\n"
+    result = forest.predict(test_data_features)
+    output = pd.DataFrame(data={"Accuracy":"", "Sentiment":result, "Ticker":test["Ticker"], "Date":test["Date"]})
+    output.to_csv(os.path.join(os.path.dirname(__file__), 'randomForestResults.csv'), index=False, quoting=3)
+    print "Wrote results to randomForestResults.csv"
 \end{verbatim}
 \caption{The Sentiment Python code takes the .csv exported by the historical stock script and parses the Snippets to train on the stock script and apply it to more recent stock quotes and Google Alerts}\label{c:sentiment}
 \end{figure}
@@ -248,7 +496,96 @@ This analysis shows the stock ticker ABBV for the pharmaceutical company AbbVie 
 
 \begin{figure}[htb]
 \begin{verbatim}
-your code here 
+'''
+Validate random forest analysis
+Tiffany Fabianac Modified code from:
+    - http://pandas-datareader.readthedocs.io/en/latest/remote_data.html
+'''
+
+
+from pandas_datareader import data
+import pandas as pd
+import csv
+import string
+import datetime
+from collections import defaultdict
+from pandas.tseries.offsets import BDay
+
+
+def stockData (startDate, endDate, ticker):
+	# Define which online source one should use
+	data_source = 'google'
+
+	# User pandas_reader.data.DataReader to load the desired data.
+	panel_data = data.DataReader(ticker, data_source, startDate, endDate)
+
+	close = panel_data.ix['Close']
+	volume = panel_data.ix['Volume']
+	op = panel_data.ix['Open']
+	high = panel_data.ix['High']
+	low = panel_data.ix['Low']
+
+	# Getting all weekdays between 01/01/2017 and 12/31/2017
+	all_weekdays = pd.date_range(start=startDate, end=endDate, freq='B')
+
+	# Align new set of dates
+	close = close.reindex(all_weekdays)
+	volume = volume.reindex(all_weekdays)
+	op = op.reindex(all_weekdays)
+	high = high.reindex(all_weekdays)
+	low = low.reindex(all_weekdays)
+
+	result = pd.concat([close, volume, op, high, low], axis=1, join='inner')
+	result.columns=['close','volume','open','high','low']
+	return result
+
+
+    
+def findHigh (startDate, ticker):
+
+	# Get date and five days after
+	endDate = datetime.datetime.today().strftime('%Y-%m-%d')
+
+	result = stockData(startDate, endDate, ticker)
+	if (result.iloc[0]['high'] != result.iloc[0]['high']):
+		return 0
+	else:
+		tempHigh = result.nlargest(1,'high')
+		high = tempHigh.iloc[0]['high']
+		return high
+
+def openPrice (endDate, ticker):
+	temp_date = datetime.datetime.strptime(endDate, "%Y-%m-%d")
+	startDate = temp_date - BDay(1)
+
+	result = stockData(startDate, endDate, ticker)
+	if(result.iloc[0]['high'] != result.iloc[0]['high']):
+		return 1
+	else:
+		open = result.iloc[0]['open']
+		return open
+
+
+with open('randomForestResults.csv', 'rb') as csvfile:
+	with open('resultsData.csv','wb') as f:
+		datareader = csv.DictReader(csvfile)
+		writer = csv.DictWriter(f, fieldnames=datareader.fieldnames, extrasaction='ignore', delimiter=',', skipinitialspace=True)
+		writer.writeheader()
+		for line in datareader:
+			if (line['Ticker'] == '' or line['Sentiment'] == ''):
+				pass
+			else:
+				ticker = [line['Ticker']]
+				date = line['Date']
+				high = findHigh(date, ticker)
+				startPrice = openPrice(date, ticker)
+				prctIncrease = round(((high-startPrice)/startPrice)*100,2)
+				if (high > startPrice*1.1 and line['Sentiment']=='W' ):
+					line['Accuracy']='W'
+					print ticker, prctIncrease, high, startPrice, date
+				else:
+					line['Accuracy']='L'
+				writer.writerow(line)
 \end{verbatim}
 \caption{This Python script takes in the Date and Stock Ticker Symbol from the sentiment .csv that was produced using the sentiment python script provided for performing a random forest analysis on the Google Alert results. This code returns a modified .csv which lists an ``L'' for stocks that did not increase by 10\% from the time the Alert was received to the current date and a ``W'' for stocks that increased by at least 10\%. It also prints the stocks that increased by at least 10\%  and were marked as ``winners'' by the sentiment script.}\label{c:result}
 \end{figure}
@@ -266,13 +603,16 @@ ARRY is a bio-pharmaceutical company that was call out in the training set as a 
 
 
 \section{Conclusion}
-The codes provided for this project will take Google Alert data directly from a Gmail account, write the date the alert was received and the Snippet to a .csv, use the stock tickers identified in the Google Alerts to pull relevant historical stock price data to create a training set which is then analyzed using a random tree approach. The random tree analysis then produces a prediction for stocks that have received alerts more recently (within five days of the analysis). While all the sentiments drawn were indicated as ``losers'' none of the stocks were reconfirmed by recent historical data as significant increases. 
+The codes provided for this project take Google Alert data directly from a Gmail account, write the date the alert was received and the Snippet to a .csv, use the stock tickers identified in the Google Alerts to pull relevant historical stock price data to create a training set which is then analyzed using a random tree approach. The random tree analysis then produces a prediction for stocks that have received alerts more recently (within five days of the analysis). While all the sentiments drawn in the final calculation were indicated as ``losers'' none of the stocks were reconfirmed by recent historical data as significant increases. The lack of true negatives does not confirm the model as the dataset was very low, but could be an indication of the model being on the right track for success.
 
-The analysis presented herein represents how sentiment expressed in news reports about clinical trials has the potential to predict the movement of stock prices. Further analysis should work with a bigger data set, possibly by increasing the number of configured Google Alerts and certainly by identifying how to pull stock tickers from the Snippets. 
+The analysis presented herein represents the possible impact of sentiment expressed in news reports about clinical trials has the potential to predict the movement of stock prices. Further analysis should work with a bigger data set, possibly by increasing the number of configured Google Alerts and certainly by identifying how to pull stock tickers from the Snippets. An idea to do this might be to create a dictionary of stock tickers and company names and compare this dictionary with the sentiments. This could then pull out any company names or tickers defined in the Snippets and associate the relevant ticker symbol. 
+
+Next steps might also include more in depth analysis on the timing of stock increases by changing the historical stock data from five days after an alert is received to two days or one day. This would allow for a more immediate reflection on the cause and effect of the reported news. This project was run on ubuntu and took approximately four minutes to process after Nltk was downloaded. Nltk took some seven minutes to download for the first run. Future projects, with bigger datasets, could be run from cloud environments like AWS, Chromeleon, or the server node of a big red environment. 
+
 
 \begin{acks}
 
-The author would like to thank Dr. Gregor von Laszewski and the teaching assistants of the Fall 2017 i523 course for their support and suggestions to write this paper.
+The author would like to thank Dr. Gregor von Laszewski and the teaching assistants of the Fall 2017 i523 course for their support and suggestions in writing this paper. 
 
 \end{acks}
 

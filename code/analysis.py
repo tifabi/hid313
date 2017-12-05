@@ -1,5 +1,5 @@
 '''
-Collect Historical Stock Data
+Validate random forest analysis
 Tiffany Fabianac Modified code from:
     - http://pandas-datareader.readthedocs.io/en/latest/remote_data.html
 '''
@@ -8,8 +8,10 @@ Tiffany Fabianac Modified code from:
 from pandas_datareader import data
 import pandas as pd
 import csv
+import string
 import datetime
 from collections import defaultdict
+from pandas.tseries.offsets import BDay
 
 
 def stockData (startDate, endDate, ticker):
@@ -37,61 +39,52 @@ def stockData (startDate, endDate, ticker):
 
 	result = pd.concat([close, volume, op, high, low], axis=1, join='inner')
 	result.columns=['close','volume','open','high','low']
-
 	return result
-	
+
+
     
 def findHigh (startDate, ticker):
 
 	# Get date and five days after
-	temp_date = datetime.datetime.strptime(startDate, "%Y-%m-%d")
-	endDate = temp_date + datetime.timedelta(days=5)
+	endDate = datetime.datetime.today().strftime('%Y-%m-%d')
 
-	
 	result = stockData(startDate, endDate, ticker)
+	if (result.iloc[0]['high'] != result.iloc[0]['high']):
+		return 0
+	else:
+		tempHigh = result.nlargest(1,'high')
+		high = tempHigh.iloc[0]['high']
+		return high
+
+def openPrice (endDate, ticker):
+	temp_date = datetime.datetime.strptime(endDate, "%Y-%m-%d")
+	startDate = temp_date - BDay(1)
+
+	result = stockData(startDate, endDate, ticker)
+	if(result.iloc[0]['high'] != result.iloc[0]['high']):
+		return 1
+	else:
+		open = result.iloc[0]['open']
+		return open
 
 
-	tempHigh = result.nlargest(1,'high')
-	high = tempHigh.iloc[0]['high']
-
-	return high
-
-def openPrice (startDate, ticker):
-	
-	result = stockData(startDate, startDate, ticker)
-	open = result.iloc[0]['open']
-	return open
-
-
-
-
-ticker = ['CLSN']
-start_date = '2017-08-21'
-#if (findHigh(start_date, ticker) > (openPrice(start_date, ticker)*1.1)):
-#	print ticker, "Bingo"
-#else:
-#	print ticker, "Loser"
-#print findHigh(start_date, ticker)
-#print openPrice(start_date, ticker)
-
-with open('google_alert_data.csv', 'rb') as csvfile:
-	with open('outfile.csv','a') as f:
+with open('randomForestResults.csv', 'rb') as csvfile:
+	with open('resultsData.csv','wb') as f:
 		datareader = csv.DictReader(csvfile)
-		writer = csv.DictWriter(f, fieldnames=datareader.fieldnames, extrasaction='ignore', delimiter=',')
+		writer = csv.DictWriter(f, fieldnames=datareader.fieldnames, extrasaction='ignore', delimiter=',', skipinitialspace=True)
+		writer.writeheader()
 		for line in datareader:
-			if (line['Ticker'] == ''):
+			if (line['Ticker'] == '' or line['Sentiment'] == ''):
 				pass
 			else:
 				ticker = [line['Ticker']]
-				date = line['\xef\xbb\xbfDate']
+				date = line['Date']
 				high = findHigh(date, ticker)
-				startPrice = openPrice(start_date, ticker)
+				startPrice = openPrice(date, ticker)
 				prctIncrease = round(((high-startPrice)/startPrice)*100,2)
-				if (high > startPrice*1.1):
-					line['W/L?']='W'
-					line['%Change']=prctIncrease
+				if (high > startPrice*1.1 and line['Sentiment']=='W' ):
+					line['Accuracy']='W'
 					print ticker, prctIncrease, high, startPrice, date
 				else:
-					line['W/L?']='L'
-					line['%Change']=prctIncrease
+					line['Accuracy']='L'
 				writer.writerow(line)
