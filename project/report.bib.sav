@@ -273,4 +273,24 @@
   url          = {https://am.jpmorgan.com/us/en/asset-management/gim/adv/insights/guide-to-the-markets/viewer},
 }
 
+@Misc{www-apiAccess,
+  author       = {Google},
+  title        = {Easily access Google APIs from Python},
+  howpublished = {Website},
+  month        = {01},
+  year         = {2017},
+  timestamp    = {2017-12-04},
+  url          = {https://developers.google.com/api-client-library/python/},
+}
+
+@Misc{www-http,
+  author       = {hugovk},
+  title        = {Httplib2},
+  howpublished = {Website},
+  month        = {10},
+  year         = {2017},
+  timestamp    = {2017-12-04},
+  url          = {https://github.com/httplib2/httplib2},
+}
+
 @Comment{jabref-meta: databaseType:bibtex;}

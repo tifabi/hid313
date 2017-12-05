@@ -119,6 +119,8 @@ Once credentials are received in the form of a JSON file, the Google Client Libr
 
  Headlines of the received alerts, usually the title of the article and the first couple of lines, are referred to as ``Snippets'' by Google's Gmail API. This project pulled only the Snippets and the date from the Google Alerts. The Snippets do not contain the whole article but may still provide enough evidence of sentiment for further analysis and prediction of the associated stock. Unfortunately, no solution was identified for extracting the appropriate stock symbols from the Snippets so this task had to be performed manually. 
 
+The google-api-python-client provides a number of helpful modules that are designed to provide simple access to Google APIs. The main components of authenticating the API are apiclient which build the credential string which will be added to each execution string for the API. Auth2client provides the authentication library \cite{www-apiAccess}. Access to HTTP connections are provided by httplib2 \cite{www-http}. Dates are managed and manipulated with time, dateutil, and datetime. Csv, io, and json provide text and file parses and manipulators. 
+
 The Python code calls the Gmail API and writes a .csv from the data. After calling all needed libraries, the scope of the authorization is defined. Google mail can be opened with a Readonly or Modify authentication. Next, the credentials are established by the JSON file received during the API authentication setup. This JSON must be saved in the same directory as the code being run. The code sets the variables for User ID and Label then runs an execution command calling the  Messages.List API, which looks like this:
 \begin{mdframed}[style=default]
 \begin{lstlisting}
