@@ -1,3 +1,11 @@
+'''
+Use KaggleWord to produce random forest analysis
+Tiffany Fabianac Modified code from:
+    - https://youtu.be/AJVP96tAWxw
+    - Siraj Raval
+'''
+
+
 import os
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.ensemble import RandomForestClassifier
