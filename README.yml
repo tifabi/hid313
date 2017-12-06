@@ -65,8 +65,9 @@ project:
         - Tiffany Fabianac
     hid:
         - 313
-    status: 99%
-    title: The Impact of Clinical Trial Results on Pharmaceutical Stock Performance
+    status: 100%
+    title: The Impact of Clinical Trial Results on Pharmaceutical Stock 
+    Performance
     type: project
     url: https://github.com/bigdata-i523/hid313/blob/master/project/report.tex
     chapter: Health
