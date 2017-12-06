@@ -303,4 +303,24 @@
   url          = {https://en.wikipedia.org/wiki/Timeline_of_machine_learning},
 }
 
+@Misc{www-nyse,
+  author       = {FXCM},
+  title        = {New York Stock Exchange},
+  howpublished = {Website},
+  month        = {12},
+  year         = {2014},
+  timestamp    = {2017-12-04},
+  url          = {https://www.fxcm.com/insights/new-york-stock-exchange-nyse/#history},
+}
+
+@Misc{www-lse,
+  author       = {London Stock Exchange},
+  title        = {About London Stock Exchange Group},
+  howpublished = {Website},
+  month        = {01},
+  year         = {2017},
+  timestamp    = {2017-12-04},
+  url          = {https://www.lseg.com/about-london-stock-exchange-group},
+}
+
 @Comment{jabref-meta: databaseType:bibtex;}
