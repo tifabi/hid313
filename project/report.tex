@@ -4,7 +4,7 @@
 
 
 \usepackage{listings} %code extracts
-\lstset{breaklines=true, basicstyle=\tiny}
+\lstset{breaklines=true, basicstyle=\small}
 
 \begin{document}
 \title{The Impact of Clinical Trial Results on Pharmaceutical Stock Performance}
@@ -93,13 +93,13 @@ Data collection was initiated with the use of Google Alerts. Google allows for a
 To collect data from the received Google Alerts without too much manual clicking, Gmail has an available API which allows users to pull data from a Gmail account. To start using the Gmail API, a user must first configure their Authentication credentials through Google's developer console. The JSON format is shown:
 \begin{lstlisting}
 {"installed":{"client_id":"###.apps.googleusercontent.com",
-			"project_id":"###",
-			"auth_uri":"https://accounts.google.com/o/oauth2/auth",
-			"token_uri":"https://accounts.google.com/o/oauth2/token",
-			"auth_provider_x509_cert_url":"https://www.googleapis.com/oauth2/v1/certs",
-			"client_secret":"###",
-			"redirect_uris":["urn:ietf:wg:oauth:2.0:oob",
-				"http://localhost"]}}
+		  "project_id":"###",
+		  "auth_uri":"https://accounts.google.com/o/oauth2/auth",
+		  "token_uri":"https://accounts.google.com/o/oauth2/token",
+		  "auth_provider_x509_cert_url":"https://www.googleapis.com/oauth2/v1/certs",
+		  "client_secret":"###",
+		  "redirect_uris":["urn:ietf:wg:oauth:2.0:oob",
+			"http://localhost"]}}
 \end{lstlisting}
 Once credentials are received in the form of a JSON file, the Google Client Library can be installed using pip to install google-api-python-client. The Google Development team has provided a quickstart file which facilitates the first authentication run. Running this quick start guide will open a browser window and prompt the user to log into a Gmail account. The user then accepts the authorization and can run the Gmail API from command line or other compilers. 
 
