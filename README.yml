@@ -47,6 +47,7 @@ paper2:
     title: Big Data Applications in Laboratories
     type: latex
     url: https://github.com/bigdata-i523/hid313/blob/master/paper2/report.tex
+    chapter: Health    
 project:
     review: Dec 4 2017
     abstract: >
