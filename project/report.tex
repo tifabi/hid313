@@ -3,9 +3,6 @@
 \input{format/i523}
 
 
-\usepackage{listings} %code extracts
-\lstset{breaklines=true, basicstyle=\small}
-
 \begin{document}
 \title{The Impact of Clinical Trial Results on Pharmaceutical Stock Performance}
 
@@ -31,7 +28,7 @@ A ``stock'' is a piece of ownership in a company. Offering stocks for sale provi
 
 The biggest stock markets in the world are currently the New York Stock Exchange (NYSE), the National Association of Securities Dealers Automated Quotations (NASDAQ), and the London Stock Exchange. NYSE started in 1792 with thwenty four stock brokers. The initial focus was government bonds which provided secure, long term income. The early days of the 1800 saw stocks traded through telegraph. Telephones replaces the telegraphs in 1878. Current trading on the NYSE can surpass 1.4 billion shares each day across almost 4,000 companies \cite{www-nyse}. NASDAQ began as an all-electric equities exchange in 1971 and today provides trading, technology, and information services for financial markets. Today over 4,000 companies are traded on the NASDAQ with over 1.8 billion trades per day \cite{www-nasdaq}. The London stock exchange was founded in 1801. Currently over 2,600 companies across 60 countries are traded on the London Stock Exchange each day \cite{www-lse}.
 
-Throughout the history of markets, prices have been tracked and insightful traders have attempted to predict and capitalize on price fluctuation. The age of computers opened new doors for stock analysis and trend prediction to facilitate capital gains for traders. Financial companies like Goldman Sachs and JPMorgan Chase \& Co. have hired mathematicians, statisticians, and trade analysts since the early days of trading in an effort to predict the market in a consistent manner. Once an algorithm is established and used consistently the algorithm itself but be considered as a variable that could effect the prediction outcome \cite{Hellstrom}. 
+Throughout the history of markets, prices have been tracked and insightful traders have attempted to predict and capitalize on price fluctuation. The age of computers opened new doors for stock analysis and trend prediction to facilitate capital gains for traders. Financial companies like Goldman Sachs and JPMorgan Chase \& Co. have hired mathematicians, statisticians, and trade analysts since the early days of trading in an effort to predict the market in a consistent manner. Once an algorithm is established and used consistently the algorithm itself but be considered as a variable that could effect the prediction outcome \cite{Helverbatimrom}. 
 
 A major complexity in creating algorithms for the stock market is that the market tends to follow the erratic emotions and feelings of humans. If computers were running the market, making trade decisions based on logic and reason, then the market would be much more stable. The volatility of human emotions about money and stocks creates tremendous volatility in the market. The revolution of social media has provided a means of measuring the mood of possible traders. For this reason, the ability to predict society's reaction to news has developed into a field of study within the data science world \cite{BOLLEN}. 
 
@@ -65,24 +62,24 @@ An Application Programming Interface (API) acts as the middleman between the req
 Machine learning is the study using computer language to recognize patterns and make data-driven decisions based off of them. It is based on the theories of statistics. Bayes' Theorem gives the probability of an event occurring given some evidence. Bayes Theorem is vital in Machine Learning because it provides evidence to how probabilities should be updated given new evidence. Markov's theory describes properties that can be predicted based only on past events. Some of the first learning programs were designed t play boardgames such as checkers and chess \cite{www-wikiMachine}.
 
 NASDAQ's website provides historical stock performance data that can be exported as a Comma-Separated Values (CSV) file. The disadvantage of NASDAQ's free export service is that each stock must be exported separately. The free quote service can be accessed at \cite{www-quotenasdaq}. NASDAQ provides API services for subscribers starting at \$5,000 per year \cite{www-nasdaq-sub}. Access to NASDAQ's API services can also be granted through corporate sponsorship. NASDAQ's free CSV export services were used to collect initial project data. In example, the stock history for Celsion Corporation during the week of August 21, 2017 is shown:
-\begin{lstlisting}
+\begin{verbatim}
 date,close,volume,open,high,low
 2017/08/25,1.3700,179097.0000,1.3600,1.4100,1.3000
 2017/08/24,1.3600,149832.0000,1.3100,1.3600,1.2810
 2017/08/23,1.3100,223451.0000,1.2500,1.3300,1.2430
 2017/08/22,1.2800,164594.0000,1.3200,1.3200,1.2400
 2017/08/21,1.3300,169037.0000,1.3300,1.3700,1.2800
-\end{lstlisting}
+\end{verbatim}
 
 
 Exports such as this one offered by NASDAQ and API interfaces for stock data are provided by numerous companies. The Yahoo! Finance API is explored below and the Google Finance API was used to perform the stock data extraction for the analysis presented. Additional resources such as stock tracking apps and free exports are available. CSV exports such as the one listed above can be downloaded from Google Finance, Yahoo! Finance, and many others. This publication does not provide a complete list of available resources, but attempts to present a few for comparison. 
 
 Python.org provides a python module to pull stock data from Yahoo! Finance \cite{www-python-yahoo}. The package can be installed through Git by cloning the Git directory where the package is available: \cite{www-yahooStock}. To install the python package without Git the tape archive can be downloaded from \cite{www-pythonYahooStock}.  Tape archives allow for compression of multiple files which can be restored to their original format using the tar command in the command line \cite{www-tar}.  Apply the tar options: z - filter archive through gzip, x - extract an archive file, and f - filename of archive, use ``cd'' to change the current working directory, and then install the python module using the package management command ``pip'':
-\begin{lstlisting}
+\begin{verbatim}
 tar -zxf yahoo-finance-1.4.0.tar.gz
 cd yahoo-finance
 pip install yahoo-finance
-\end{lstlisting}
+\end{verbatim}
 While Yahoo! Finance is a great resource, the API does not function consistently, and as of this writing the API has been turned off by Yahoo!.
 
 
@@ -91,16 +88,17 @@ While Yahoo! Finance is a great resource, the API does not function consistently
 Data collection was initiated with the use of Google Alerts. Google allows for alerts to be configures from Google \cite{www-googleAlerts}. Gmail users can configure these alerts to be sent through email when news or other types of articles pertaining to a defined subject are released to the web. The Google Alerts for this project were: ``Phase III Trial'', ``Phase 3 Trial'', and ``Meets Primary End Point''. When these phrases are detected by Google, the link to the webpage and a short description are sent via email to the configured email address. On busy days, an excess of 100 alerts were received for these alert phrases. On slow days, only a couple alerts were received.  Only very infrequently were no messages received. 
 
 To collect data from the received Google Alerts without too much manual clicking, Gmail has an available API which allows users to pull data from a Gmail account. To start using the Gmail API, a user must first configure their Authentication credentials through Google's developer console. The JSON format is shown:
-\begin{lstlisting}
-{"installed":{"client_id":"###.apps.googleusercontent.com",
+\begin{verbatim}
+{"installed":{"client_id":
+		   "###.apps.googleusercontent.com",
 		  "project_id":"###",
-		  "auth_uri":"https://accounts.google.com/o/oauth2/auth",
-		  "token_uri":"https://accounts.google.com/o/oauth2/token",
-		  "auth_provider_x509_cert_url":"https://www.googleapis.com/oauth2/v1/certs",
+		  "auth_uri":"[URL]",
+		  "token_uri":"[URL",
+		  "auth_provider_x509_cert_url":"[URL",
 		  "client_secret":"###",
 		  "redirect_uris":["urn:ietf:wg:oauth:2.0:oob",
 			"http://localhost"]}}
-\end{lstlisting}
+\end{verbatim}
 Once credentials are received in the form of a JSON file, the Google Client Library can be installed using pip to install google-api-python-client. The Google Development team has provided a quickstart file which facilitates the first authentication run. Running this quick start guide will open a browser window and prompt the user to log into a Gmail account. The user then accepts the authorization and can run the Gmail API from command line or other compilers. 
 
  Headlines of the received alerts, usually the title of the article and the first couple of lines, are referred to as ``Snippets'' by Google's Gmail API. This project pulled only the Snippets and the date from the Google Alerts. The Snippets do not contain the whole article but may still provide enough evidence of sentiment for further analysis and prediction of the associated stock. Unfortunately, no solution was identified for extracting the appropriate stock symbols from the Snippets so this task had to be performed manually. 
@@ -108,53 +106,29 @@ Once credentials are received in the form of a JSON file, the Google Client Libr
 The google-api-python-client provides a number of helpful modules that are designed to provide simple access to Google APIs. The main components of authenticating the API are apiclient which build the credential string which will be added to each execution string for the API. Auth2client provides the authentication library \cite{www-apiAccess}. Access to HTTP connections are provided by httplib2 \cite{www-http}. Dates are managed and manipulated with time, dateutil, and datetime. Csv, io, and json provide text and file parses and manipulators. 
 
 The Python code calls the Gmail API and writes a .csv from the data. After calling all needed libraries, the scope of the authorization is defined. Google mail can be opened with a Readonly or Modify authentication. Next, the credentials are established by the JSON file received during the API authentication setup. This JSON must be saved in the same directory as the code being run. The code sets the variables for User ID and Label then runs an execution command calling the  Messages.List API, which looks like this:
-\begin{lstlisting}
-GMAIL.users().messages().list(userId='me', labelIds=[INBOX], q='from:googlealerts-noreply@google.com before:2017/11/24').execute()
-\end{lstlisting}
+\begin{verbatim}
+GMAIL.users().messages().list(userId='me', labelIds=
+	[INBOX], q='from:[ALERTS] before:[DATE]').execute()
+\end{verbatim}
 Google has defined the user ID ``me'' as the global for the authenticated account in use. The labe lID ``INBOX'' designates that the messages will be pulled from the inbox folder, but any other folder could be called here as well as a collection of labels that Google has defined such as ``UNREAD''. The ``q'' designates a query. The query will return only messages from the Google Alerts email address which have been received by the twenty-fourth of November 2017. This data was selected so that all returned records would have five market days of stock prices to compare. This execution returns a dictionary which contains message IDs for all the messages that matched the query.
 
 The next step is to ``get'' the messages with the use of the Messages.Get API. While looping through the dictionary of message ID from the defined query, the script retrieves the Date and Snippet for each. Additional options could return the Sender, Receiving Email, Email body, among others. The syntax is shown here:
-\begin{lstlisting}
-GMAIL.users().messages().get(userId='me', id=m_id).execute()
-\end{lstlisting}
+\begin{verbatim}
+GMAIL.users().messages().get(userId='me',
+	 id=m_id).execute()
+\end{verbatim}
 The user ID is the same as described previously with the ID being the current message ID within the loop. This execute command returns a dictionary which is parsed fron ``payload'' to ``headers'' to extract the Date. The Snippet is also grabbed from the message dictionary and along with the Date, passed to a final list to be written to a .csv file. 
 
 \begin{figure}[htb]
-\begin{lstlisting}
 \begin{verbatim}
 '''
+Portion of Reading GMAIL Alerts using Python
 Tiffany Fabianac Modified code from:
-Reading GMAIL using Python
     - https://github.com/abhishekchhibber/Gmail-Api-through-Python
 	- Abhishek Chhibber
-
-This script does the following:
-- Go to Gmal inbox
-- Find and read all the Google Alert messages
-- Extract details (Date, Snippet) and export them to a .csv file / DB
-
-Before running this script, the user should get the authentication by following 
-the link: https://developers.google.com/gmail/api/quickstart/python
-Also, client_secret.json should be saved in the same directory as this file
 '''
-# Importing required libraries
-from apiclient import discovery
-from apiclient import errors
-from httplib2 import Http
-from oauth2client import file, client, tools
-import base64
-from bs4 import BeautifulSoup
-import re
-import time
-import dateutil.parser as parser
-from datetime import datetime
-import datetime
-import csv
-import json
-import io
-
 # Creating a storage.JSON file with authentication details
-SCOPES = 'https://www.googleapis.com/auth/gmail.modify'  # we are using modify and not readonly, as we will be marking the messages Read
+SCOPES = 'https://www.googleapis.com/auth/gmail.modify' 
 store = file.Storage('storage.json')
 creds = store.get()
 if not creds or creds.invalid:
@@ -165,9 +139,8 @@ GMAIL = discovery.build('gmail', 'v1', http=creds.authorize(Http()))
 user_id = 'me'
 label_id_one = 'INBOX'
 
-# Getting all the unread messages from Inbox
-# labelIds can be changed accordingly
-alert_msgs = GMAIL.users().messages().list(userId='me', labelIds=[label_id_one], q='from:googlealerts-noreply@google.com').execute()
+alert_msgs = GMAIL.users().messages().list(userId='me', labelIds=[label_id_one], 
+	q='from:googlealerts-noreply@google.com').execute()
 
 # We get a dictonary. Now reading values for the key 'messages'
 mssg_list = alert_msgs['messages']
@@ -194,17 +167,7 @@ for mssg in mssg_list:
 
     final_list=json.dumps(temp_dict)  # This will create a dictonary item in the final list
     re.sub(r'\u22c5', '', final_list)
-    print final_list
-
-# exporting the values as .csv
-#final_list = json.loads(final_list)
-with open("API_out.csv", "a") as f:
-    header=["Date", "Snippet"]
-    writer = csv.DictWriter(f, fieldnames=header, delimiter=',')
-    for x in final_list:
-        writer.writerow(x)
 \end{verbatim}
-\end{lstlisting}
 \caption{The Google API Python code calls the Gmail APIs Messages.list which lists reduced properties of Gmail messages and Messages. Get which returns the messages themselves. Lists is used to query the messages that are wanted based on the defined criteria: userId=me, labelIds=INBOX], q=from:googlealerts-noreply@google.com. Get then retrieves the messages identified in using List and returns the messages content for Date and Snippet.}\label{c:googleapi}
 \end{figure}
 
@@ -212,50 +175,41 @@ Figure \ref{c:googleapi} shows the entire code to extract Google Alerts data usi
 
 
 The Python package pandas is an incredible resource that provides a number of tools to read, parse, extract, and manipulate delimited file or data types. The Pandas package has a resource for getting stock market data from free online sources such as Yahoo! mentioned above and Google. To install this package through Git, simply clone the directory, use the ``Change Directory'' command ``cd'' to change the current working directory, and installing the python module as follows: 
-\begin{lstlisting}
-$ git clone git://github.com/pydata/pandas-datareader.git
-$ cd pandas-datareader
-$ python setup.py install
-\end{lstlisting}
+``
+git clone git://github.com/pydata/pandas-datareader.git
+cd pandas-datareader
+python setup.py install
+''
 
 
 If the Python setup returns the error: ``python: command not found'' run the following with the path to the python installation:
 
-\begin{lstlisting}
-$ PATH="$PATH:/c/Python27"
-\end{lstlisting}
+``
+PATH="\$PATH:/c/Python27"
+''
 
 Pandas-datareader and many other packages can also be installed via pip. In example, many additional packages are needed to run a python script using pandas-datareader. These packages can be configured all at once or one at a time as follows:
-\begin{lstlisting}
+``
 pip -m install --user numpy scipy matplotlib ipython jupyter pandas sympy nose urllib3 chardet idna
-\end{lstlisting}
+''
 
 
 Unlike the NASDAQ export, using Google as a data source for pandas-datareader requires each attribute to be called separately. This means calling the Close Price, Open Price, High Price, etc individually and joining them through code. Also, unlike NASDAQ's export but this time in a positive light, multiple tickers can be passed together. This allows for all historical data to be pulled for many stocks with a single code. 
 
 The Python code for collecting historical stock data is propelled by pandas\_datareader. The script starts by reading in the .csv created using the Google API script described previously. The data is read in as a dictionary using DictReader and the output file is opened/created right afterwards to allow for writing out with each loop through the starting file's dictionary. For each line the stock ticker and date of the Google Alert are passed to a function that returns the highest price of the stock 5 days after the Google Alert, the stock and ticker are then passed to a function that pulls the opening price on the day that the Google Alert was received. The highest price and starting price are the used to calculate the percent change using the formula: 
-\begin{lstlisting}
-round(((high-startPrice)/startPrice)*100,2)
-\end{lstlisting}
+``
+round(((high-startPrice)/startPrice)\*100,2)
+''
 If the high price is 10\% higher than the starting price the line is given a ``W'' for ``Winner''. If the high price is less than 10\% of the starting price then the line is marked with a ``L'' for loser. The whole line with the addition of the Win or Lose  designation and the percent change is written to a new .csv file with the intention of attempting sentiment analysis with the Win or Lose designations as the outcome and the Snippets as the sentiment. 
 
 
 \begin{figure}[htb]
-\begin{lstlisting}
 \begin{verbatim}
 '''
 Collect Historical Stock Data
 Tiffany Fabianac Modified code from:
     - http://pandas-datareader.readthedocs.io/en/latest/remote_data.html
 '''
-from pandas_datareader import data
-import pandas as pd
-import csv
-import string
-import datetime
-from collections import defaultdict
-from pandas.tseries.offsets import BDay
-
 def stockData (startDate, endDate, ticker):
 	# Define which online source one should use
 	data_source = 'google'
@@ -300,41 +254,14 @@ def openPrice (startDate, ticker):
 	result = stockData(startDate, endDate, ticker)
 	open = result.iloc[0]['open']
 	return open
-
-with open('google_alert_data.csv', 'rb') as csvfile:
-	with open('labeledTrainData.csv','wb') as f:
-		datareader = csv.DictReader(csvfile)
-		writer = csv.DictWriter(f, fieldnames=datareader.fieldnames, extrasaction='ignore', delimiter=',', skipinitialspace=True)
-		writer.writeheader()
-		for line in datareader:
-			if (line['Ticker'] == ''):
-				pass
-			elif (line['Snippit'] == ''):
-				pass
-			else:
-				ticker = [line['Ticker']]
-				date = line['Date']
-				high = findHigh(date, ticker)
-				startPrice = openPrice(date, ticker)
-				prctIncrease = round(((high-startPrice)/startPrice)*100,2)
-				if (high > startPrice*1.1):
-					line['W/L?']='W'
-					line['%Change']=prctIncrease
-					print ticker, prctIncrease, high, startPrice, date
-				else:
-					line['W/L?']='L'
-					line['%Change']=prctIncrease
-				line['Snippit'] = line['Snippit'].replace(',', '')
-				writer.writerow(line)
 \end{verbatim}
-\end{lstlisting}
 \caption{This Python script takes in the Date, Stock Ticker Symbol, and Snippet from the Google API .csv that was produced using both manual mining of the stock symbols and the python script provided for getting the Date and Snippet from Gmail. This code returns a modified .csv which lists an ``L'' for stocks that did not increase by 10\% in five days and a ``W'' for stocks that increased by at least 10\%. It also prints the stocks that increased by at least 10\% along with the highest price over 5 days, the starting price on the day that the Google Alert was received, and the percent change.}\label{c:stock}
 \end{figure}
 
-Figure \ref{c:stock} shows the code to combine the data produced by the Google Alert mining and available historic stock price data.
+Figure \ref{c:stock} shows a potrion of the code to combine the data produced by the Google Alert mining and available historic stock price data.
 
 Twelve out of sixty-three stock tickers returned by Google Alerts were flagged at ``Winners'' for increasing in price by 10\% within five days after the Google Alert was received. 
-\begin{lstlisting}
+\begin{verbatim}
 Ticker prctChange High Open Date
 ['ABEO'] 27.39 10.0 7.85 2017-08-22
 ['ARRY'] 15.41 10.11 8.76 2017-08-22
@@ -351,86 +278,86 @@ Ticker prctChange High Open Date
 ['VTVT'] 10.92 5.08 4.58 2017-11-23
 ['VTVT'] 24.24 5.69 4.58 2017-11-19
 ['VTVT'] 24.24 5.69 4.58 2017-11-18
-\end{lstlisting}
+\end{verbatim}
 
 ABEO Snippet appears to reflect a number of disappointments followed by something positive:
-\begin{lstlisting}
+``
 Abeona Therapeutics - String Of Pearls Strategy With Numerous Catalysts And A Lot Of Upside
-\end{lstlisting}
+''
 This Snippet was received August 22, when ABEO's stock opened at \$7.85. The stock hit its five year high of \$19.95 on October 10. 
 
 ARRY is a bio-pharmaceutical company that was call out in the training set as a ``winner'' for August 22. J P Morgan Chase \& Co confirmed a ``buy'' rating for ARRY on September 11, three weeks after it was identified by this model as a ``winner''. Goldman Sachs increase their buy in to ARRY  on October 22 by 33\%. The Snippet for ARRY does not appear to reflect a positive sentiment about the company:
-\begin{lstlisting}
+``
 Array Biopharma (ARRY) Reaches \$8.58 After 7.00\% Down Move; Per Se Technologies
-\end{lstlisting}
+''
 
 CLSN started the year just under \$10 a share and slowly declined to its current \$2.40. The Snippet for CLSN was received on November 23 when the stock briefly rose 160\% before falling again:
-\begin{lstlisting}
+``
 After Reaching Milestone, Is Celsion Corporation (NASDAQ:CLSN)'s Short Interest Revealing
-\end{lstlisting}
+''
 
 EARS is a small tier stock with a market cap of \$19 million. The stock rose to \$0.93 per share on November 24 before falling to \$0.42 on November 28. The Snippet depicts analysts predictions of negative earnings:
-\begin{lstlisting}
+``
 Analysts See \$-0.20 EPS for Auris Medical Holding AG (EARS) BZ Weekly The Company's advanced product candidate, AM-101, is in
-\end{lstlisting}
+''
 
 Egalet Corporation (EGLT) develops abuse resistant formulations of opioids. The Snippet is overwhelming positive and describing stock increases:
-\begin{lstlisting}
+``
 Egalet progressing second abuse-deterrent opioid med The Pharma Letter Egalet (Nasdaq: EGLT) says its share move up a hefty 38.55\%
-\end{lstlisting}
+''
 This Google Alert was receive on November 17, just prior to another 30\% stock increase.
 
 HCM is a pharmaceutical company headquartered in China. The Snippet reflects the companies one year growth of over 160\%:
-\begin{lstlisting}
+``
 Will Hutchison China MediTech Limited (HCM) Run Out of Steam Soon? BZ Weekly ... Hutchison China MediTech Limited (LON:HCM) were
-\end{lstlisting}
+''
 
 NLNK received positive feedback from established analysts on November 18. Causing the stock to briefly rise and then return. This Snippet and change may reflect the power on analyst ratings:
-\begin{lstlisting}
+``
 NewLink Genetics Corporation (NASDAQ:NLNK) Given Buy Rating at Cantor Fitzgerald StockNewsTimes Indoximod is expected to enter a
-\end{lstlisting}
+''
 
 NWBO held steady through October at \$0.16 and between until November 15 and November 28 rose 87\%. The Snippet was received on November 18 in the prime of the increase.
-\begin{lstlisting}
+``
 Here's Why Northwest Biotherapeutics, Inc (OTCMKTS:NWBO) Just Ripped Higher The Finance Registrar The Company's lead program
 orthwest Bioth Cmn (NASDAQ:NWBO) Stock – Is it Overbought? First News 24 The Business's lead product, DCVax-L, is in an ongoing
-\end{lstlisting}
+''
 
 ONCE is a large cap therapeutics company which showed growth through September. The Snippet reflects news of a changed analyst rating:
-\begin{lstlisting}
+``
 Spark Therapeutics Inc (ONCE) is Initiated by Evercore ISI to ``In-line''
-\end{lstlisting}
+''
 
 OTIC rose in August just before crashing from \$20.18 to \$3.20 after a failed Phase III clinical trial in September. The Snippet captured analyst confidence in the company: 
-\begin{lstlisting}
+``
 Otonomy (OTIC): Reiterating Outperform Ahead Of Catalysts - Cowen
-\end{lstlisting}
+''
 
 PSTI is a leading developer of cell therapy products derived from placenta. The Snippet received on November 22 reflects news of a granted patent application:
-\begin{lstlisting}
+``
 Pluristem Therapeutics (PSTI) Granted US Patent for Skeletal Muscle Regeneration StreetInsider.com This very important patent comes
-\end{lstlisting}
+''
 
 VTVT's Snippets reflect stock decreases, low sentiment scores, and drug treatment competition:
-\begin{lstlisting}
+``
 vTv Therapeutics (VTVT) Reaches \$5.01 After 5.00\% Down Move; FMC (FMC) Shorts Down By
 vTv Therapeutics (VTVT) Receives Media Sentiment Rating of 0.25 The Lincolnian Online vTv Therapeutics Inc is a clinical-stage
 Head-To-Head Comparison: vTv Therapeutics (VTVT) versus Its Competitors The Ledger Gazette Its drug candidate for the treatment of
-\end{lstlisting}
+''
 These sentiments do not reflect positive news and should be cause to look more deeply at the stock comparison being performed. 
 
 \subsection{Data Analysis}
-There are many methods for analysis that could be implemented for this dataset. Time series prediction could be used to identify trends in the stocks of interest \cite{ARMANO}. Regression analysis is very common to identify key factors that contribute to the accuracy of a  prediction. TextBlob sentiment analysis allows for sentiment analysis to be performed in as little as four lines of code. TextBlob returns a number between -1 and 1 for how negative (-1) or positive (1) a defined sentiment or group of text is \cite{www-textblob}. Tensorflow is another popular way of creating sentiment analysis which takes an input of words with the intent of returning a sentiment of positive, negative, or neutral. In order to do this Tensorflow uses a build in learning and training set called tflearn to compare previously established sentiments. For example, words like ``love'' and ``happy'' return a positive sentiment while words like ``hate'' and ``sad'' return a negative sentiment \cite{www-oreilyTensor}. 
+There are many methods for analysis that could be implemented for this dataset. Time series prediction could be used to identify trends in the stocks of interest \cite{ARMANO}. Regression analysis is very common to identify key factors that contribute to the accuracy of a  prediction. TextBlob sentiment analysis allows for sentiment analysis to be performed in as little as four lines of code. TextBlob returns a number between -1 and 1 for how negative (-1) or positive (1) a defined sentiment or group of text is \cite{www-textblob}. Tensorflow is another popular way of creating sentiment analysis which takes an input of words with the intent of returning a sentiment of positive, negative, or neutral. In order to do this Tensorflow uses a build in learning and training set called tflearn to compare previously established sentiments. For example, words like ``love'' and ``happy'' return a positive sentiment while words like ``hate'' and ``sad'' return a negative sentiment \cite{www-oreilyTensor}.
 
-Random Forest algorithms create decision trees for each variable. Each tree represents the sequence of events or decisions that led to the outcome or result. With each branch or step through the decision tree a probability is calculated for the outcome and the collection of trees work are combined to create multiple ``regression lines'' that are used to predict an outcome when presented with new data that does not have an outcome. The model or collection of trees form what is called a random forest can then be used to predict sentiment or outcomes. For stock data or other time series datasets, it is essential to continuously re-train the model to perform at its best. As mentioned above it is possible for additional models and even the model itself to begin to influence the prediction model. 
+Random Forest algorithms create decision trees for each variable. Each tree represents the sequence of events or decisions that led to the outcome or result. With each branch or step through the decision tree a probability is calculated for the outcome and the collection of trees work are combined to create multiple ``regression lines'' that are used to predict an outcome when presented with new data that does not have an outcome. The model or collection of trees form what is called a random forest can then be used to predict sentiment or outcomes. For stock data or other time series datasets, it is essential to continuously re-train the model to perform at its best. As mentioned above it is possible for additional models and even the model itself to begin to influence the prediction model.
 
 The code that performs random tree analysis starts with some dependencies. Os is imported to allow for command line functionality, the machine learning library sklearn is used because it has a very fast learning rate, KaggleWord2VecUtility is a utility that processes raw text into segments for learning, pandas as mentioned before helps with delimited file manipulation, nltk that already contains a number of words and phrases that are not useful for sentiment analysis importing this library helps to eliminate those elements from the dataset we are training on. To install KaggleWord2VecUtility visit the DeepLearningMovies github directory \cite{kaggle}. 
 
 In this code the Kaggle module removes special characters associated with HTML. It was intended to return a URL from the Google Alerts and run the website associates with each alert through beautiful-soup to use the entire article as training data, but the Gmail messages were encoded in such a way that it was not possible to extract the URL from the Google Alert. Nltk removes works such as ``to'' or ``the'' which do not hold any inherent meaning that could be applied to the sentiment analysis. The cleaning process converts the first Snippet as follows:
-\begin{lstlisting}
+``
 Abeona Therapeutics - String Of Pearls Strategy With Numerous Catalysts And A Lot Of Upside
 abeona therapeutics string pearls strategy numerous catalysts lot upside
-\end{lstlisting}
+''
 
 Once the Snippets are free of special characters and non-sentiment words, they are parsed into a vector. This process creates what is called a ``Bag of Words'' by creating a dictionary with the count of each word in the text. This is also called tokenization or vectorizing and is performed easily with the sklearn package's countVectorizer process. Here the analyzer is set to word, there is no defined tokenizer, pre-processor, or stop words needed so these are set to ``None''. The maximum number of features controls the limit on the maximum number of words and frequencies contained in the bag of words. 
 
@@ -438,61 +365,39 @@ A model is easily created from the defined bag of words using sklearn's fit\_tra
 
 
 \begin{figure}[htb]
-\begin{lstlisting}
 \begin{verbatim}
 '''
-Use KaggleWord to produce random forest analysis
+PORTION OF: Use NLTK Stop word to produce random forest analysis 
 Tiffany Fabianac Modified code from:
     - https://youtu.be/AJVP96tAWxw
     - Siraj Raval
 '''
-
-
-import os
-from sklearn.feature_extraction.text import CountVectorizer
-from sklearn.ensemble import RandomForestClassifier
-from KaggleWord2VecUtility import KaggleWord2VecUtility
-import pandas as pd
-import nltk
-
-if __name__ == '__main__':
-    train = pd.read_csv(os.path.join(os.path.dirname(__file__), 'labeledTrainData.csv'), header=0, delimiter=",", quoting=3)
-    test = pd.read_csv(os.path.join(os.path.dirname(__file__), 'testData.csv'), header=0, delimiter=",", quoting=3)
-
-    print 'The first review is:'
-    print train['Snippit'][0]
-    raw_input("Press Enter to continue...")
-
-    print 'Download text data sets'
-    nltk.download()
-    clean_train_reviews = []
-    print "Cleaning and parsing the training set...\n"
+    # Cleaning and parsing the training set
     for i in xrange(0, len(train['Snippit'])):
-        clean_train_reviews.append(" ".join(KaggleWord2VecUtility.review_to_wordlist(train['Snippit'][i], True)))
+        clean_train_reviews.append(" ".join(word for word in trainPos["review"][i].lower().split()
+		 if len(word) > 2 and word.isalpha() and word not in stop))
 
-    print "Creating the bag of words...\n"
-    vectorizer = CountVectorizer(analyzer="word", tokenizer=None, preprocessor=None, stop_words=None, max_features=5000)
+    #Creating the bag of words
+    vectorizer = CountVectorizer(analyzer="word", tokenizer=None, preprocessor=None, 
+		stop_words=None, max_features=5000)
     train_data_features = vectorizer.fit_transform(clean_train_reviews)
     train_data_features = train_data_features.toarray()
 
-    print "Training Random forest..."
+    #Training Random forest
     forest = RandomForestClassifier(n_estimators=100)
     forest = forest.fit(train_data_features, train['W/L?'])
     clean_test_reviews=[]
 
-    print "Cleaning and parsing \n"
+    #"Cleaning and parsing
     for i in xrange(0,len(test['Snippit'])):
-        clean_test_reviews.append(" ".join(KaggleWord2VecUtility.review_to_wordlist(test['Snippit'][i], True)))
+        clean_test_reviews.append(" ".join(word for word in trainPos["review"][i].lower().split() 
+		if len(word) > 2 and word.isalpha() and word not in stop))
     test_data_features = vectorizer.transform(clean_test_reviews)
     test_data_features = test_data_features.toarray()
 
     print "Predicting test labels...\n"
     result = forest.predict(test_data_features)
-    output = pd.DataFrame(data={"Accuracy":"", "Sentiment":result, "Ticker":test["Ticker"], "Date":test["Date"]})
-    output.to_csv(os.path.join(os.path.dirname(__file__), 'randomForestResults.csv'), index=False, quoting=3)
-    print "Wrote results to randomForestResults.csv"
 \end{verbatim}
-\end{lstlisting}
 \caption{The Sentiment Python code takes the .csv exported by the historical stock script and parses the Snippets to train on the stock script and apply it to more recent stock quotes and Google Alerts}\label{c:sentiment}
 \end{figure}
 
@@ -501,76 +406,17 @@ Figure \ref{c:sentiment} shows the entire code to train on the dataset provided 
 The Python code for verifying the random tree analysis by pulling historical stock data for each ticker analyzed is propelled by pandas\_datareader. The script starts by reading in the .csv created using the random tree analysis script described previously. The data is read in as a dictionary using DictReader and the output file is opened/created right afterwards to allow for writing out with each loop through the starting file's dictionary. For each line the stock ticker and date are passed to a function that returns the highest price of the stock from the date of the received alert to the current date, the stock and ticker are then passed to a function that pulls the opening price on the day that the Google Alert was received. These two prices are compared to verify if the stock increased by 10\% from the time of the alert. 
 
 \begin{figure}[htb]
-\begin{lstlisting}
 \begin{verbatim}
 '''
-Validate random forest analysis
+PORTION OF: Validate random forest analysis
 Tiffany Fabianac Modified code from:
     - http://pandas-datareader.readthedocs.io/en/latest/remote_data.html
 '''
-from pandas_datareader import data
-import pandas as pd
-import csv
-import string
-import datetime
-from collections import defaultdict
-from pandas.tseries.offsets import BDay
-
-def stockData (startDate, endDate, ticker):
-	# Define which online source one should use
-	data_source = 'google'
-
-	# User pandas_reader.data.DataReader to load the desired data.
-	panel_data = data.DataReader(ticker, data_source, startDate, endDate)
-
-	close = panel_data.ix['Close']
-	volume = panel_data.ix['Volume']
-	op = panel_data.ix['Open']
-	high = panel_data.ix['High']
-	low = panel_data.ix['Low']
-
-	# Getting all weekdays between 01/01/2017 and 12/31/2017
-	all_weekdays = pd.date_range(start=startDate, end=endDate, freq='B')
-
-	# Align new set of dates
-	close = close.reindex(all_weekdays)
-	volume = volume.reindex(all_weekdays)
-	op = op.reindex(all_weekdays)
-	high = high.reindex(all_weekdays)
-	low = low.reindex(all_weekdays)
-
-	result = pd.concat([close, volume, op, high, low], axis=1, join='inner')
-	result.columns=['close','volume','open','high','low']
-	return result
-   
-def findHigh (startDate, ticker):
-
-	# Get date and five days after
-	endDate = datetime.datetime.today().strftime('%Y-%m-%d')
-
-	result = stockData(startDate, endDate, ticker)
-	if (result.iloc[0]['high'] != result.iloc[0]['high']):
-		return 0
-	else:
-		tempHigh = result.nlargest(1,'high')
-		high = tempHigh.iloc[0]['high']
-		return high
-
-def openPrice (endDate, ticker):
-	temp_date = datetime.datetime.strptime(endDate, "%Y-%m-%d")
-	startDate = temp_date - BDay(1)
-
-	result = stockData(startDate, endDate, ticker)
-	if(result.iloc[0]['high'] != result.iloc[0]['high']):
-		return 1
-	else:
-		open = result.iloc[0]['open']
-		return open
-
 with open('randomForestResults.csv', 'rb') as csvfile:
 	with open('resultsData.csv','wb') as f:
 		datareader = csv.DictReader(csvfile)
-		writer = csv.DictWriter(f, fieldnames=datareader.fieldnames, extrasaction='ignore', delimiter=',', skipinitialspace=True)
+		writer = csv.DictWriter(f, fieldnames=datareader.fieldnames, extrasaction='ignore', 
+				delimiter=',', skipinitialspace=True)
 		writer.writeheader()
 		for line in datareader:
 			if (line['Ticker'] == '' or line['Sentiment'] == ''):
@@ -588,16 +434,15 @@ with open('randomForestResults.csv', 'rb') as csvfile:
 					line['Accuracy']='L'
 				writer.writerow(line)
 \end{verbatim}
-\end{lstlisting}
 \caption{This Python script takes in the Date and Stock Ticker Symbol from the sentiment .csv that was produced using the sentiment python script provided for performing a random forest analysis on the Google Alert results. This code returns a modified .csv which lists an ``L'' for stocks that did not increase by 10\% from the time the Alert was received to the current date and a ``W'' for stocks that increased by at least 10\%. It also prints the stocks that increased by at least 10\%  and were marked as ``winners'' by the sentiment script.}\label{c:result}
 \end{figure}
 
-Figure \ref{c:result} shows the code to combine the data produced by the random forest analysis and combine it with available historic stock price data.
+Figure \ref{c:result} shows a portion of the code to combine the data produced by the random forest analysis and combine it with available historic stock price data.
 
 
 \section{Results}
 The results export to a .csv as shown:
-\begin{lstlisting}
+\begin{verbatim}
 Accuracy,Date,Sentiment,Ticker
 L,2017-12-03,L,ABBV
 L,2017-12-01,L,ABBV
@@ -605,7 +450,7 @@ L,2017-11-30,L,ACAD
 L,2017-12-02,L,ALNY
 L,2017-12-03,L,ARGX
 L,2017-12-02,L,BABA
-\end{lstlisting}
+\end{verbatim}
 This analysis shows the stock ticker ABBV for the pharmaceutical company AbbVie as a ``loser'' twice as two alerts were received about the company on December 3 and 4. As of December 4 ABBV is down 1.08\% post Google Alert receipt. ACAD is the ticker for ACADIA Pharmaceuticals Inc. which is down 1.09\% since receipt of the Google Alert on November 30. Alnylam Pharmaceuticals, Inc (ALNY) is down 1.06\% since December 2. ARGX is down 0.97\% since receipt of the Google Alert but up over 18\% for the prior five days. ARGX did not appear in the training data set so it might be worth while to explore factors that contributed to it's recent increase, if not clinical trials. Interestingly, BABA is a Chinese e-commerce site which is down 2.88\%. This ticker appearing is cause to look closer at the article that was link to the Clinical Trial Alert but returned a retail chain.
 
 \subsection{Comparison to Established Analyst Ratings}
@@ -613,33 +458,34 @@ This analysis shows the stock ticker ABBV for the pharmaceutical company AbbVie 
 One of the important aspects of professional analyst ratings is that the intent is to identify the best long term investments. This project only looked at short term success over a period of five days. Further research should refine additional models to compare success in shorter term, one day, and longer term, six months to a year or more.
 
 ABBV, a predicted ``losers'', is marked ``Neutral'' by JPM. The two Snippets stored for ABBV are:
-\begin{lstlisting}
+``
 Cornercap Investment Counsel Has Raised Abbvie Com (ABBV) Stake; Profile of 7 Analysts ... NormanObserver.com The firm also develops
 AbbVie Inc. (NYSE:ABBV) Updates On Phase III Murano Trial MMJ Reporter AbbVie Inc. (NYSE:ABBV) reported that the American Society of
-\end{lstlisting}
+''
 The ABBV Snippets do not appear to be negative, and may even swing more in the positive light. AbbVie being a large cap pharmaceutical company may create lower volatility for the stock. Reanalyzing the data and splitting companies into small, mid, and high tier categories may give very different results over long term and short term growth. Larger companies, with many more investors, tend to be more stable.
 
 ACAD, a predicted ``losers'', is marked as ``Neutral by Goldman Sachs. Interestingly enough, the Snippet about ACAD mentions a sentiment ranking which is actually what would be considered a positive rating:
-\begin{lstlisting}
+``
 EPS for The Kroger Co. (KR) Expected At \$0.41; Acadia Pharmaceuticals (ACAD)s Sentiment Is 1.05 San Times The Company
-\end{lstlisting}
- Increasing the Google Alert scope to include data related to sentiment for pharmaceutical companies may be beneficial to the model.
+''
+Increasing the Google Alert scope to include data related to sentiment for pharmaceutical companies may be beneficial to the model.
 
 ALNY, a predicted ``losers'', is marked as ``Buy'' by JPM, Goldman Sachs, and Barclays. These analyst ratings may indicate that the model is not a good indicator of long term success as the analyst ratings suggest. This requires greater research which should include increasing the historic interval from five days to six months or more. The Snippet does not seem to reflect anything positive or negative about the company:
-\begin{lstlisting}
+``
 How Analysts Rated Alnylam Pharmaceuticals Inc. (NASDAQ:ALNY) Last Week BZ Weekly The company's clinical development programs
-\end{lstlisting}
-
+''
 ARGX, a predicted ``losers'', is ranked as ``Underweight'' by Barclay, as recently upgraded to ``Buy'' by Goldman Sachs, and has been downgraded to ``Neutral'' by JPM. The Snippet used to rate this company mentions a number of other stock tickers but gives the impression that ARGX should be a stock of interest for would be investors:
-\begin{lstlisting}
+``
 Here's Why You Need To Keep An Eye On ARGX MGNX KURA AGIO Nasdaq argenxs lead oncology asset is ARGX-110 currently
-\end{lstlisting}
+''
+
  It is important to note that the intention of the model is not to predict winning long term stocks, but to predict stock that will have a 10\% increase within five business days.
 
 BABA, a predicted ``losers'', is also marked as a ``buy'' by all investing firms and reaffirms that additional data is needed for long term investments. This Snippet does show negative sentiment. Reducing holding in a company is not a good sign of positive things to come for a company. Even if this sentiment appears accurate, it does not on its own confirm the model's accuracy.
-\begin{lstlisting}
+``
 Tiger Legatus Capital Management Cut Alibaba Group Hldg LTD (BABA) Position By \$2.80 Million ... UtahHerald.com The company
-\end{lstlisting}
+''
+
 
 
 \section{Conclusion}
