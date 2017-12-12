@@ -1,6 +1,6 @@
 \documentclass[sigconf]{acmart}
 
-\input{format/i523}
+\input{format/final}
 
 
 \begin{document}
@@ -61,7 +61,10 @@ An Application Programming Interface (API) acts as the middleman between the req
 
 Machine learning is the study using computer language to recognize patterns and make data-driven decisions based off of them. It is based on the theories of statistics. Bayes' Theorem gives the probability of an event occurring given some evidence. Bayes Theorem is vital in Machine Learning because it provides evidence to how probabilities should be updated given new evidence. Markov's theory describes properties that can be predicted based only on past events. Some of the first learning programs were designed t play boardgames such as checkers and chess \cite{www-wikiMachine}.
 
-NASDAQ's website provides historical stock performance data that can be exported as a Comma-Separated Values (CSV) file. The disadvantage of NASDAQ's free export service is that each stock must be exported separately. The free quote service can be accessed at \cite{www-quotenasdaq}. NASDAQ provides API services for subscribers starting at \$5,000 per year \cite{www-nasdaq-sub}. Access to NASDAQ's API services can also be granted through corporate sponsorship. NASDAQ's free CSV export services were used to collect initial project data. In example, the stock history for Celsion Corporation during the week of August 21, 2017 is shown:
+NASDAQ's website provides historical stock performance data that can be exported as a Comma-Separated Values (CSV) file. The disadvantage of NASDAQ's free export service is that each stock must be exported separately. The free quote service can be accessed at \cite{www-quotenasdaq}. NASDAQ provides API services for subscribers starting at \$5,000 per year \cite{www-nasdaq-sub}. Access to NASDAQ's API services can also be granted through corporate sponsorship. NASDAQ's free CSV export services were used to collect initial project data. In this example, the stock history for Celsion Corporation during the week of August 21, 2017 is shown  in \ref{T:nasdaq}.
+
+\begin{table}[htb]
+\caption{NASDAQ CVS file format example}\label{T:nasdaq} 
 \begin{verbatim}
 date,close,volume,open,high,low
 2017/08/25,1.3700,179097.0000,1.3600,1.4100,1.3000
@@ -70,6 +73,7 @@ date,close,volume,open,high,low
 2017/08/22,1.2800,164594.0000,1.3200,1.3200,1.2400
 2017/08/21,1.3300,169037.0000,1.3300,1.3700,1.2800
 \end{verbatim}
+\end{table}
 
 
 Exports such as this one offered by NASDAQ and API interfaces for stock data are provided by numerous companies. The Yahoo! Finance API is explored below and the Google Finance API was used to perform the stock data extraction for the analysis presented. Additional resources such as stock tracking apps and free exports are available. CSV exports such as the one listed above can be downloaded from Google Finance, Yahoo! Finance, and many others. This publication does not provide a complete list of available resources, but attempts to present a few for comparison. 
@@ -90,14 +94,14 @@ Data collection was initiated with the use of Google Alerts. Google allows for a
 To collect data from the received Google Alerts without too much manual clicking, Gmail has an available API which allows users to pull data from a Gmail account. To start using the Gmail API, a user must first configure their Authentication credentials through Google's developer console. The JSON format is shown:
 \begin{verbatim}
 {"installed":{"client_id":
-		   "###.apps.googleusercontent.com",
-		  "project_id":"###",
-		  "auth_uri":"[URL]",
-		  "token_uri":"[URL",
-		  "auth_provider_x509_cert_url":"[URL",
-		  "client_secret":"###",
-		  "redirect_uris":["urn:ietf:wg:oauth:2.0:oob",
-			"http://localhost"]}}
+       "###.apps.googleusercontent.com",
+      "project_id":"###",
+      "auth_uri":"[URL]",
+      "token_uri":"[URL",
+      "auth_provider_x509_cert_url":"[URL",
+      "client_secret":"###",
+      "redirect_uris":["urn:ietf:wg:oauth:2.0:oob",
+      "http://localhost"]}}
 \end{verbatim}
 Once credentials are received in the form of a JSON file, the Google Client Library can be installed using pip to install google-api-python-client. The Google Development team has provided a quickstart file which facilitates the first authentication run. Running this quick start guide will open a browser window and prompt the user to log into a Gmail account. The user then accepts the authorization and can run the Gmail API from command line or other compilers. 
 
@@ -108,24 +112,24 @@ The google-api-python-client provides a number of helpful modules that are desig
 The Python code calls the Gmail API and writes a .csv from the data. After calling all needed libraries, the scope of the authorization is defined. Google mail can be opened with a Readonly or Modify authentication. Next, the credentials are established by the JSON file received during the API authentication setup. This JSON must be saved in the same directory as the code being run. The code sets the variables for User ID and Label then runs an execution command calling the  Messages.List API, which looks like this:
 \begin{verbatim}
 GMAIL.users().messages().list(userId='me', labelIds=
-	[INBOX], q='from:[ALERTS] before:[DATE]').execute()
+  [INBOX], q='from:[ALERTS] before:[DATE]').execute()
 \end{verbatim}
 Google has defined the user ID ``me'' as the global for the authenticated account in use. The labe lID ``INBOX'' designates that the messages will be pulled from the inbox folder, but any other folder could be called here as well as a collection of labels that Google has defined such as ``UNREAD''. The ``q'' designates a query. The query will return only messages from the Google Alerts email address which have been received by the twenty-fourth of November 2017. This data was selected so that all returned records would have five market days of stock prices to compare. This execution returns a dictionary which contains message IDs for all the messages that matched the query.
 
 The next step is to ``get'' the messages with the use of the Messages.Get API. While looping through the dictionary of message ID from the defined query, the script retrieves the Date and Snippet for each. Additional options could return the Sender, Receiving Email, Email body, among others. The syntax is shown here:
 \begin{verbatim}
 GMAIL.users().messages().get(userId='me',
-	 id=m_id).execute()
+   id=m_id).execute()
 \end{verbatim}
 The user ID is the same as described previously with the ID being the current message ID within the loop. This execute command returns a dictionary which is parsed fron ``payload'' to ``headers'' to extract the Date. The Snippet is also grabbed from the message dictionary and along with the Date, passed to a final list to be written to a .csv file. 
 
-\begin{figure}[htb]
+\begin{figure*}[htb]
 \begin{verbatim}
 '''
 Portion of Reading GMAIL Alerts using Python
 Tiffany Fabianac Modified code from:
     - https://github.com/abhishekchhibber/Gmail-Api-through-Python
-	- Abhishek Chhibber
+  - Abhishek Chhibber
 '''
 # Creating a storage.JSON file with authentication details
 SCOPES = 'https://www.googleapis.com/auth/gmail.modify' 
@@ -140,7 +144,7 @@ user_id = 'me'
 label_id_one = 'INBOX'
 
 alert_msgs = GMAIL.users().messages().list(userId='me', labelIds=[label_id_one], 
-	q='from:googlealerts-noreply@google.com').execute()
+  q='from:googlealerts-noreply@google.com').execute()
 
 # We get a dictonary. Now reading values for the key 'messages'
 mssg_list = alert_msgs['messages']
@@ -169,7 +173,7 @@ for mssg in mssg_list:
     re.sub(r'\u22c5', '', final_list)
 \end{verbatim}
 \caption{The Google API Python code calls the Gmail APIs Messages.list which lists reduced properties of Gmail messages and Messages. Get which returns the messages themselves. Lists is used to query the messages that are wanted based on the defined criteria: userId=me, labelIds=INBOX], q=from:googlealerts-noreply@google.com. Get then retrieves the messages identified in using List and returns the messages content for Date and Snippet.}\label{c:googleapi}
-\end{figure}
+\end{figure*}
 
 Figure \ref{c:googleapi} shows the entire code to extract Google Alerts data using the Google provided Gmail API.
 
@@ -203,7 +207,7 @@ round(((high-startPrice)/startPrice)\*100,2)
 If the high price is 10\% higher than the starting price the line is given a ``W'' for ``Winner''. If the high price is less than 10\% of the starting price then the line is marked with a ``L'' for loser. The whole line with the addition of the Win or Lose  designation and the percent change is written to a new .csv file with the intention of attempting sentiment analysis with the Win or Lose designations as the outcome and the Snippets as the sentiment. 
 
 
-\begin{figure}[htb]
+\begin{figure*}[htb]
 \begin{verbatim}
 '''
 Collect Historical Stock Data
@@ -211,52 +215,52 @@ Tiffany Fabianac Modified code from:
     - http://pandas-datareader.readthedocs.io/en/latest/remote_data.html
 '''
 def stockData (startDate, endDate, ticker):
-	# Define which online source one should use
-	data_source = 'google'
+  # Define which online source one should use
+  data_source = 'google'
 
-	# User pandas_reader.data.DataReader to load the desired data.
-	panel_data = data.DataReader(ticker, data_source, startDate, endDate)
+  # User pandas_reader.data.DataReader to load the desired data.
+  panel_data = data.DataReader(ticker, data_source, startDate, endDate)
 
-	close = panel_data.ix['Close']
-	volume = panel_data.ix['Volume']
-	op = panel_data.ix['Open']
-	high = panel_data.ix['High']
-	low = panel_data.ix['Low']
+  close = panel_data.ix['Close']
+  volume = panel_data.ix['Volume']
+  op = panel_data.ix['Open']
+  high = panel_data.ix['High']
+  low = panel_data.ix['Low']
 
-	# Getting all weekdays between 01/01/2017 and 12/31/2017
-	all_weekdays = pd.date_range(start=startDate, end=endDate, freq='B')
+  # Getting all weekdays between 01/01/2017 and 12/31/2017
+  all_weekdays = pd.date_range(start=startDate, end=endDate, freq='B')
 
-	# Align new set of dates
-	close = close.reindex(all_weekdays)
-	volume = volume.reindex(all_weekdays)
-	op = op.reindex(all_weekdays)
-	high = high.reindex(all_weekdays)
-	low = low.reindex(all_weekdays)
+  # Align new set of dates
+  close = close.reindex(all_weekdays)
+  volume = volume.reindex(all_weekdays)
+  op = op.reindex(all_weekdays)
+  high = high.reindex(all_weekdays)
+  low = low.reindex(all_weekdays)
 
-	result = pd.concat([close, volume, op, high, low], axis=1, join='inner')
-	result.columns=['close','volume','open','high','low']
-	return result
-	
+  result = pd.concat([close, volume, op, high, low], axis=1, join='inner')
+  result.columns=['close','volume','open','high','low']
+  return result
+  
 def findHigh (startDate, ticker):
-	# Get date and five days after
-	temp_date = datetime.datetime.strptime(startDate, "%Y-%m-%d")
-	endDate = temp_date + BDay(5)
+  # Get date and five days after
+  temp_date = datetime.datetime.strptime(startDate, "%Y-%m-%d")
+  endDate = temp_date + BDay(5)
 
-	result = stockData(startDate, endDate, ticker)
-	tempHigh = result.nlargest(1,'high')
-	high = tempHigh.iloc[0]['high']
-	return high
+  result = stockData(startDate, endDate, ticker)
+  tempHigh = result.nlargest(1,'high')
+  high = tempHigh.iloc[0]['high']
+  return high
 
 def openPrice (startDate, ticker):
-	temp_date = datetime.datetime.strptime(startDate, "%Y-%m-%d")
-	endDate = temp_date + BDay(1)
+  temp_date = datetime.datetime.strptime(startDate, "%Y-%m-%d")
+  endDate = temp_date + BDay(1)
 
-	result = stockData(startDate, endDate, ticker)
-	open = result.iloc[0]['open']
-	return open
+  result = stockData(startDate, endDate, ticker)
+  open = result.iloc[0]['open']
+  return open
 \end{verbatim}
 \caption{This Python script takes in the Date, Stock Ticker Symbol, and Snippet from the Google API .csv that was produced using both manual mining of the stock symbols and the python script provided for getting the Date and Snippet from Gmail. This code returns a modified .csv which lists an ``L'' for stocks that did not increase by 10\% in five days and a ``W'' for stocks that increased by at least 10\%. It also prints the stocks that increased by at least 10\% along with the highest price over 5 days, the starting price on the day that the Google Alert was received, and the percent change.}\label{c:stock}
-\end{figure}
+\end{figure*}
 
 Figure \ref{c:stock} shows a potrion of the code to combine the data produced by the Google Alert mining and available historic stock price data.
 
@@ -364,7 +368,7 @@ Once the Snippets are free of special characters and non-sentiment words, they a
 A model is easily created from the defined bag of words using sklearn's fit\_transform which is converted to an array. The method for classification is a random forest which builds decision trees for each variable in the dataset. In example, the first Snippet describes a ``winning'' variable and contains the word ``Upside'' if other Snippets contain the word ``Upside'' it might be indicative of a ``winning'' classifier. The last step calculates predictions for the new dataset based on the established classifiers. This is simple done with the RandomForestClossifier's predict function.
 
 
-\begin{figure}[htb]
+\begin{figure*}[htb]
 \begin{verbatim}
 '''
 PORTION OF: Use NLTK Stop word to produce random forest analysis 
@@ -375,11 +379,11 @@ Tiffany Fabianac Modified code from:
     # Cleaning and parsing the training set
     for i in xrange(0, len(train['Snippit'])):
         clean_train_reviews.append(" ".join(word for word in trainPos["review"][i].lower().split()
-		 if len(word) > 2 and word.isalpha() and word not in stop))
+     if len(word) > 2 and word.isalpha() and word not in stop))
 
     #Creating the bag of words
     vectorizer = CountVectorizer(analyzer="word", tokenizer=None, preprocessor=None, 
-		stop_words=None, max_features=5000)
+    stop_words=None, max_features=5000)
     train_data_features = vectorizer.fit_transform(clean_train_reviews)
     train_data_features = train_data_features.toarray()
 
@@ -391,7 +395,7 @@ Tiffany Fabianac Modified code from:
     #"Cleaning and parsing
     for i in xrange(0,len(test['Snippit'])):
         clean_test_reviews.append(" ".join(word for word in trainPos["review"][i].lower().split() 
-		if len(word) > 2 and word.isalpha() and word not in stop))
+    if len(word) > 2 and word.isalpha() and word not in stop))
     test_data_features = vectorizer.transform(clean_test_reviews)
     test_data_features = test_data_features.toarray()
 
@@ -399,13 +403,13 @@ Tiffany Fabianac Modified code from:
     result = forest.predict(test_data_features)
 \end{verbatim}
 \caption{The Sentiment Python code takes the .csv exported by the historical stock script and parses the Snippets to train on the stock script and apply it to more recent stock quotes and Google Alerts}\label{c:sentiment}
-\end{figure}
+\end{figure*}
 
 Figure \ref{c:sentiment} shows the entire code to train on the dataset provided by the historical stock data and Google Alert sentiments.
 
 The Python code for verifying the random tree analysis by pulling historical stock data for each ticker analyzed is propelled by pandas\_datareader. The script starts by reading in the .csv created using the random tree analysis script described previously. The data is read in as a dictionary using DictReader and the output file is opened/created right afterwards to allow for writing out with each loop through the starting file's dictionary. For each line the stock ticker and date are passed to a function that returns the highest price of the stock from the date of the received alert to the current date, the stock and ticker are then passed to a function that pulls the opening price on the day that the Google Alert was received. These two prices are compared to verify if the stock increased by 10\% from the time of the alert. 
 
-\begin{figure}[htb]
+\begin{figure*}[htb]
 \begin{verbatim}
 '''
 PORTION OF: Validate random forest analysis
@@ -413,29 +417,29 @@ Tiffany Fabianac Modified code from:
     - http://pandas-datareader.readthedocs.io/en/latest/remote_data.html
 '''
 with open('randomForestResults.csv', 'rb') as csvfile:
-	with open('resultsData.csv','wb') as f:
-		datareader = csv.DictReader(csvfile)
-		writer = csv.DictWriter(f, fieldnames=datareader.fieldnames, extrasaction='ignore', 
-				delimiter=',', skipinitialspace=True)
-		writer.writeheader()
-		for line in datareader:
-			if (line['Ticker'] == '' or line['Sentiment'] == ''):
-				pass
-			else:
-				ticker = [line['Ticker']]
-				date = line['Date']
-				high = findHigh(date, ticker)
-				startPrice = openPrice(date, ticker)
-				prctIncrease = round(((high-startPrice)/startPrice)*100,2)
-				if (high > startPrice*1.1 and line['Sentiment']=='W' ):
-					line['Accuracy']='W'
-					print ticker, prctIncrease, high, startPrice, date
-				else:
-					line['Accuracy']='L'
-				writer.writerow(line)
+  with open('resultsData.csv','wb') as f:
+    datareader = csv.DictReader(csvfile)
+    writer = csv.DictWriter(f, fieldnames=datareader.fieldnames, extrasaction='ignore', 
+        delimiter=',', skipinitialspace=True)
+    writer.writeheader()
+    for line in datareader:
+      if (line['Ticker'] == '' or line['Sentiment'] == ''):
+        pass
+      else:
+        ticker = [line['Ticker']]
+        date = line['Date']
+        high = findHigh(date, ticker)
+        startPrice = openPrice(date, ticker)
+        prctIncrease = round(((high-startPrice)/startPrice)*100,2)
+        if (high > startPrice*1.1 and line['Sentiment']=='W' ):
+          line['Accuracy']='W'
+          print ticker, prctIncrease, high, startPrice, date
+        else:
+          line['Accuracy']='L'
+        writer.writerow(line)
 \end{verbatim}
 \caption{This Python script takes in the Date and Stock Ticker Symbol from the sentiment .csv that was produced using the sentiment python script provided for performing a random forest analysis on the Google Alert results. This code returns a modified .csv which lists an ``L'' for stocks that did not increase by 10\% from the time the Alert was received to the current date and a ``W'' for stocks that increased by at least 10\%. It also prints the stocks that increased by at least 10\%  and were marked as ``winners'' by the sentiment script.}\label{c:result}
-\end{figure}
+\end{figure*}
 
 Figure \ref{c:result} shows a portion of the code to combine the data produced by the random forest analysis and combine it with available historic stock price data.
 
