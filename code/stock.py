@@ -42,7 +42,6 @@ def stockData (startDate, endDate, ticker):
 	
     
 def findHigh (startDate, ticker):
-
 	# Get date and five days after
 	temp_date = datetime.datetime.strptime(startDate, "%Y-%m-%d")
 	endDate = temp_date + BDay(5)

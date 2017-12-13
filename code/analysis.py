@@ -47,7 +47,7 @@ def findHigh (startDate, ticker):
 
 	# Get date and five days after
 	endDate = datetime.datetime.today().strftime('%Y-%m-%d')
-
+	print ticker
 	result = stockData(startDate, endDate, ticker)
 	if (result.iloc[0]['high'] != result.iloc[0]['high']):
 		return 0

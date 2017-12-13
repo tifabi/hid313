@@ -64,7 +64,7 @@ Machine learning is the study using computer language to recognize patterns and 
 NASDAQ's website provides historical stock performance data that can be exported as a Comma-Separated Values (CSV) file. The disadvantage of NASDAQ's free export service is that each stock must be exported separately. The free quote service can be accessed at \cite{www-quotenasdaq}. NASDAQ provides API services for subscribers starting at \$5,000 per year \cite{www-nasdaq-sub}. Access to NASDAQ's API services can also be granted through corporate sponsorship. NASDAQ's free CSV export services were used to collect initial project data. In this example, the stock history for Celsion Corporation during the week of August 21, 2017 is shown  in \ref{T:nasdaq}.
 
 \begin{table}[htb]
-\caption{NASDAQ CVS file format example}\label{T:nasdaq} 
+\caption{NASDAQ CSV file format example}\label{T:nasdaq} 
 \begin{verbatim}
 date,close,volume,open,high,low
 2017/08/25,1.3700,179097.0000,1.3600,1.4100,1.3000
@@ -91,7 +91,9 @@ While Yahoo! Finance is a great resource, the API does not function consistently
 \subsection{Data Collection}
 Data collection was initiated with the use of Google Alerts. Google allows for alerts to be configures from Google \cite{www-googleAlerts}. Gmail users can configure these alerts to be sent through email when news or other types of articles pertaining to a defined subject are released to the web. The Google Alerts for this project were: ``Phase III Trial'', ``Phase 3 Trial'', and ``Meets Primary End Point''. When these phrases are detected by Google, the link to the webpage and a short description are sent via email to the configured email address. On busy days, an excess of 100 alerts were received for these alert phrases. On slow days, only a couple alerts were received.  Only very infrequently were no messages received. 
 
-To collect data from the received Google Alerts without too much manual clicking, Gmail has an available API which allows users to pull data from a Gmail account. To start using the Gmail API, a user must first configure their Authentication credentials through Google's developer console. The JSON format is shown:
+To collect data from the received Google Alerts without too much manual clicking, Gmail has an available API which allows users to pull data from a Gmail account. To start using the Gmail API, a user must first configure their Authentication credentials through Google's developer console. The JSON format is shown in Table \ref{T:gapi}.
+\begin{table}[htb]
+\caption{Google Gmail API JSON format}\label{T:gapi}
 \begin{verbatim}
 {"installed":{"client_id":
        "###.apps.googleusercontent.com",
@@ -103,6 +105,7 @@ To collect data from the received Google Alerts without too much manual clicking
       "redirect_uris":["urn:ietf:wg:oauth:2.0:oob",
       "http://localhost"]}}
 \end{verbatim}
+\end{table}
 Once credentials are received in the form of a JSON file, the Google Client Library can be installed using pip to install google-api-python-client. The Google Development team has provided a quickstart file which facilitates the first authentication run. Running this quick start guide will open a browser window and prompt the user to log into a Gmail account. The user then accepts the authorization and can run the Gmail API from command line or other compilers. 
 
  Headlines of the received alerts, usually the title of the article and the first couple of lines, are referred to as ``Snippets'' by Google's Gmail API. This project pulled only the Snippets and the date from the Google Alerts. The Snippets do not contain the whole article but may still provide enough evidence of sentiment for further analysis and prediction of the associated stock. Unfortunately, no solution was identified for extracting the appropriate stock symbols from the Snippets so this task had to be performed manually. 
@@ -189,7 +192,7 @@ python setup.py install
 If the Python setup returns the error: ``python: command not found'' run the following with the path to the python installation:
 
 ``
-PATH="\$PATH:/c/Python27"
+PATH=``\$PATH:/c/Python27''
 ''
 
 Pandas-datareader and many other packages can also be installed via pip. In example, many additional packages are needed to run a python script using pandas-datareader. These packages can be configured all at once or one at a time as follows:
@@ -264,7 +267,9 @@ def openPrice (startDate, ticker):
 
 Figure \ref{c:stock} shows a potrion of the code to combine the data produced by the Google Alert mining and available historic stock price data.
 
-Twelve out of sixty-three stock tickers returned by Google Alerts were flagged at ``Winners'' for increasing in price by 10\% within five days after the Google Alert was received. 
+Twelve out of over one hundred stock tickers returned by Google Alerts were flagged at ``Winners'' for increasing in price by 10\% within five days after the Google Alert was received and are shown in Table \ref{T:win}. 
+\begin{table}[htb]
+\caption{Winning Stock Tickers}\label{T:win}
 \begin{verbatim}
 Ticker prctChange High Open Date
 ['ABEO'] 27.39 10.0 7.85 2017-08-22
@@ -283,6 +288,7 @@ Ticker prctChange High Open Date
 ['VTVT'] 24.24 5.69 4.58 2017-11-19
 ['VTVT'] 24.24 5.69 4.58 2017-11-18
 \end{verbatim}
+\end{table}
 
 ABEO Snippet appears to reflect a number of disappointments followed by something positive:
 ``
@@ -371,16 +377,15 @@ A model is easily created from the defined bag of words using sklearn's fit\_tra
 \begin{figure*}[htb]
 \begin{verbatim}
 '''
-PORTION OF: Use NLTK Stop word to produce random forest analysis 
+PORTION OF: Use KaggleWord2VecUtility to produce random forest analysis 
 Tiffany Fabianac Modified code from:
     - https://youtu.be/AJVP96tAWxw
     - Siraj Raval
 '''
     # Cleaning and parsing the training set
     for i in xrange(0, len(train['Snippit'])):
-        clean_train_reviews.append(" ".join(word for word in trainPos["review"][i].lower().split()
-     if len(word) > 2 and word.isalpha() and word not in stop))
-
+        clean_train_reviews.append(" ".join(KaggleWord2VecUtility.
+    review_to_wordlist(train['Snippit'][i], True)))
     #Creating the bag of words
     vectorizer = CountVectorizer(analyzer="word", tokenizer=None, preprocessor=None, 
     stop_words=None, max_features=5000)
@@ -394,8 +399,8 @@ Tiffany Fabianac Modified code from:
 
     #"Cleaning and parsing
     for i in xrange(0,len(test['Snippit'])):
-        clean_test_reviews.append(" ".join(word for word in trainPos["review"][i].lower().split() 
-    if len(word) > 2 and word.isalpha() and word not in stop))
+        clean_test_reviews.append(" ".join(KaggleWord2VecUtility.
+    review_to_wordlist(test['Snippit'][i], True)))
     test_data_features = vectorizer.transform(clean_test_reviews)
     test_data_features = test_data_features.toarray()
 
@@ -445,16 +450,106 @@ Figure \ref{c:result} shows a portion of the code to combine the data produced b
 
 
 \section{Results}
-The results export to a .csv as shown:
+The resulting CSV file contains the accuracy of the prediction, if the stock did not increase by atleast 10\%, the date that the Google Alert was received, the Sentiment that was calculated by the random forest algorithm, and the stock ticker. The results export to a .csv as shown in Tables \ref{T:results}, \ref{T:results2}, and \ref{T:results3}.
+\begin{table}[htb]
+\caption{Final analyzed results and accuracy}\label{T:results}
 \begin{verbatim}
 Accuracy,Date,Sentiment,Ticker
-L,2017-12-03,L,ABBV
-L,2017-12-01,L,ABBV
-L,2017-11-30,L,ACAD
-L,2017-12-02,L,ALNY
-L,2017-12-03,L,ARGX
-L,2017-12-02,L,BABA
+L,2017-11-24,L,CLSN
+L,2017-11-24,L,KMDA
+L,2017-11-25,L,CLSN
+L,2017-11-25,L,VTVT
+L,2017-11-25,L,NKTR
+L,2017-11-26,L,PRTO
+L,2017-11-26,L,ADMA
+L,2017-11-26,L,KALA
+L,2017-11-26,L,SNDX
+L,2017-11-26,L,GALE
+L,2017-11-26,L,SNDX
+L,2017-11-26,L,EVOK
+L,2017-11-27,L,CPRX
+L,2017-11-27,L,AZN
+L,2017-11-27,L,TSRO
+L,2017-11-27,L,CLSN
+L,2017-11-28,L,MRK
+L,2017-11-28,L,REGN
+L,2017-11-28,L,EARS
+L,2017-11-28,L,MRK
+L,2017-11-28,L,CPRX
+L,2017-11-28,L,AZN
+L,2017-11-28,L,AERI
+L,2017-11-29,L,CLSN
+L,2017-11-29,L,EARS
 \end{verbatim}
+\end{table}
+
+\begin{table}[htb]
+\caption{Final analyzed results and accuracy continued}\label{T:results2}
+\begin{verbatim}
+Accuracy,Date,Sentiment,Ticker
+L,2017-11-29,L,MRK
+L,2017-11-29,L,TEVA
+L,2017-11-29,L,NVS
+L,2017-11-29,L,TEVA
+L,2017-11-29,L,MRK
+L,2017-11-29,L,EARS
+L,2017-11-29,L,APVO
+L,2017-11-29,L,EARS
+L,2017-11-29,L,CLSN
+L,2017-11-29,L,EARS
+L,2017-11-30,L,ACAD
+L,2017-11-30,L,MRK
+L,2017-11-30,L,TEVA
+L,2017-11-30,L,VKTX
+L,2017-11-30,L,MRK
+L,2017-11-30,L,TEVA
+L,2017-11-30,L,VKTX
+L,2017-11-30,L,CLSN
+L,2017-11-30,L,NVS
+L,2017-12-01,L,ABBV
+L,2017-12-01,L,BAYN
+L,2017-12-01,L,CLSN
+L,2017-12-01,L,CLSN
+L,2017-12-01,L,NTNX
+L,2017-12-01,L,PAIOF
+\end{verbatim}
+\end{table}
+
+\begin{table}[htb]
+\caption{Final analyzed results and accuracy continued}\label{T:results3}
+\begin{verbatim}
+Accuracy,Date,Sentiment,Ticker
+L,2017-12-01,L,SNDX
+L,2017-12-01,L,SNY
+L,2017-12-01,L,SNY
+L,2017-12-01,L,CLSN
+L,2017-12-01,L,NTNX
+L,2017-12-01,L,ABBV
+L,2017-12-02,L,ALNY
+L,2017-12-02,L,BABA
+L,2017-12-02,L,CISN
+L,2017-12-02,L,CLSN
+L,2017-12-02,L,MDXG
+L,2017-12-02,L,OCRX
+L,2017-12-02,L,PTCT
+L,2017-12-02,L,RTRX
+L,2017-12-02,L,CISN
+L,2017-12-02,L,RTRX
+L,2017-12-02,L,CLSN
+L,2017-12-03,L,ABBV
+L,2017-12-03,L,ARGX
+L,2017-12-03,L,BPMX
+L,2017-12-03,L,CLSN
+L,2017-12-03,L,CLSN
+L,2017-12-03,L,CSX
+L,2017-12-03,L,GERN
+L,2017-12-03,L,OMER
+L,2017-12-03,L,SGEN
+L,2017-12-03,L,SPHRF
+L,2017-12-03,L,TILE
+L,2017-12-03,L,TJX
+\end{verbatim}
+\end{table}
 This analysis shows the stock ticker ABBV for the pharmaceutical company AbbVie as a ``loser'' twice as two alerts were received about the company on December 3 and 4. As of December 4 ABBV is down 1.08\% post Google Alert receipt. ACAD is the ticker for ACADIA Pharmaceuticals Inc. which is down 1.09\% since receipt of the Google Alert on November 30. Alnylam Pharmaceuticals, Inc (ALNY) is down 1.06\% since December 2. ARGX is down 0.97\% since receipt of the Google Alert but up over 18\% for the prior five days. ARGX did not appear in the training data set so it might be worth while to explore factors that contributed to it's recent increase, if not clinical trials. Interestingly, BABA is a Chinese e-commerce site which is down 2.88\%. This ticker appearing is cause to look closer at the article that was link to the Clinical Trial Alert but returned a retail chain.
 
 \subsection{Comparison to Established Analyst Ratings}
@@ -493,7 +588,7 @@ Tiger Legatus Capital Management Cut Alibaba Group Hldg LTD (BABA) Position By \
 
 
 \section{Conclusion}
-The codes provided for this project take Google Alert data directly from a Gmail account, write the date the alert was received and the Snippet to a .csv, use the stock tickers identified in the Google Alerts to pull relevant historical stock price data to create a training set which is then analyzed using a random tree approach. The random tree analysis then produces a prediction for stocks that have received alerts more recently (within five days of the analysis). While all the sentiments drawn in the final calculation were indicated as ``losers'' none of the stocks were reconfirmed by recent historical data as significant increases. The lack of true negatives does not confirm the model as the dataset was very low, but could be an indication of the model being on the right track for success.
+The codes provided for this project take Google Alert data directly from a Gmail account, write the date the alert was received and the Snippet to a .csv, use the stock tickers identified in the Google Alerts to pull relevant historical stock price data to create a training set which is then analyzed using a random tree approach. The random tree analysis then produces a prediction for stocks that have received alerts more recently (within five days of the analysis). While all the sentiments drawn in the final calculation were indicated as ``losers'' none of the stocks were reconfirmed by recent historical data as significant increases. The lack of true negatives does not confirm the model, but could be an indication of the model being on the right track for success.
 
 The analysis presented herein represents the possible impact of sentiment expressed in news reports about clinical trials has the potential to predict the movement of stock prices. Further analysis should work with a bigger data set, possibly by increasing the number of configured Google Alerts and certainly by identifying how to pull stock tickers from the Snippets. An idea to do this might be to create a dictionary of stock tickers and company names and compare this dictionary with the sentiments. This could then pull out any company names or tickers defined in the Snippets and associate the relevant ticker symbol. 
 
