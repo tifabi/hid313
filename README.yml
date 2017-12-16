@@ -26,7 +26,6 @@ paper1:
         - 313
     status: Oct 31 2017 100%
     title: Big Data Platforms as a Service
-    type: latex
     url: https://github.com/bigdata-i523/hid313/blob/master/paper1/report.tex
 paper2:
     review: Nov 6 2017
@@ -45,7 +44,6 @@ paper2:
         - 313
     status: 100%
     title: Big Data Applications in Laboratories
-    type: latex
     url: https://github.com/bigdata-i523/hid313/blob/master/paper2/report.tex
     chapter: Health
 project:
