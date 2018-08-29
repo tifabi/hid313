@@ -1,0 +1,74 @@
+---
+owner:
+    hid: 313
+    name: Tiffany Fabianac
+    url: https://github.com/bigdata-i523/hid313
+paper1:
+    abstract: >
+        Big Data platform solutions allow data producers to use data to the
+        fullest potential by combining processing engines with storage
+        solutions and analytic  technologies. Pharmaceutical clients are
+        looking into platform solutions to  safely store, analyze, and use
+        clinical trial data, experimental data, drug  development studies,
+        drug production, regulation, and a number of other outlets.  Just a
+        few of the benefits of using a platform solution to manage these data
+        outlets are not having to change current work processes, that
+        management and  other research groups can access and use data without
+        needing special access to  systems, and scalability of storage and
+        analytic components is seamless. The  problems faced to implementing
+        big data platform solutions include the selection  of a platform
+        vendor, the design of appropriate data architecture, and establishing
+        effective user interfaces.
+    author:
+        - Tiffany Fabianac
+    chapter: Technology
+    hid:
+        - 313
+    status: Oct 31 2017 100%
+    title: Big Data Platforms as a Service
+    url: https://github.com/bigdata-i523/hid313/blob/master/paper1/report.tex
+paper2:
+    review: Nov 6 2017
+    abstract: >
+        Ground breaking scientific research and development happen in
+        laboratories all over the world every day. The recent flux of data has
+        revolutionized laboratories across several very different sectors. Many
+        laboratories operate at the capacity that require big data tools.
+        Exploring the current need for big data tools across several industries
+        provides a view of where these tools are currently being applied and
+        how they are benefiting the industry as well as where gaps exist.
+
+    author:
+        - Tiffany Fabianac
+    hid:
+        - 313
+    status: 100%
+    title: Big Data Applications in Laboratories
+    url: https://github.com/bigdata-i523/hid313/blob/master/paper2/report.tex
+    chapter: Health
+project:
+    review: Dec 4 2017
+    abstract: >
+        While many relate stock market trading to gambling, successful traders
+        have turned stock picking into a science. The likes of Warren Buffet
+        tell us that successful stock buying is all in the research. So what
+        kind of research aids in the prediction of companies within the highly
+        volatile pharmaceutical market? The use of available, open-source APIs
+        and Google Alerts are used to explore if clinical trial results can
+        directly impact stock performance in small, mid, and large cap
+        pharmaceutical companies. Key words and/or phrases in results and
+        related news articles are identified as possible predictors of market
+        effect. As well as a comparison to already established analyst ratings
+        from Barclays, Goldman, and J P Morgan Chase which have already been
+        shown to impact stock performance.
+    author:
+        - Tiffany Fabianac
+    hid:
+        - 313
+    status: 100%
+    title: >
+        The Impact of Clinical Trial Results on Pharmaceutical Stock
+        Performance
+    type: project
+    url: https://github.com/bigdata-i523/hid313/blob/master/project/report.tex
+    chapter: Health

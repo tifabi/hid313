@@ -1,0 +1,85 @@
+\documentclass[sigconf]{acmart}
+
+\input{format/i523}
+
+\begin{document}
+\title{Big Data Applications  in Laboratories}
+
+\author{Tiffany Fabianac} 
+ \affiliation{% 
+   \institution{Indiana University} 
+   \city{Bloomington}  
+   \state{Indiana}  
+   \postcode{47408} 
+   \country{USA}
+ } 
+ \email{tifabi@iu.edu} 
+ \renewcommand{\shortauthors}{T. Fabianac} 
+
+\begin{abstract}
+Ground breaking scientific research and development happen in laboratories all over the world every day. The recent flux of data has revolutionized laboratories across several very different sectors. Many laboratories operate at the capacity that require big data tools. Exploring the current need for big data tools across several industries provides a view of where these tools are currently being applied and how they are benefiting the industry as well as where gaps exist.
+\end{abstract}
+
+\keywords{Big Data, HID313, i523}
+\maketitle
+\section{Introduction}
+%what is a laboratory?
+A laboratory is a room or facility designed to conduct experimentation, research, teaching, or manufacturing. Experimentation is the process of performing a defined procedure or test to validate a hypothesis. Most commonly during experimentation, modifications or additions are made to a sample of process to determine the result.  Research is the investigation of behavior, material, or process.  Research often involves experimentation but does not have to. Teaching within a laboratory introduces students research and experimentation while exploring processes and demonstrating technique. The manufacturing of drugs and medical equipment, the refinement of chemicals such as oil, and food processing are all carried out in laboratories.
+
+There are many different types of laboratories. Analytical laboratories explore the chemical composition of molecules, chemicals, products, and other samples. Biosafety laboratories are designed to offer containment of potentially hazardous chemicals or pathogens. Cleanrooms are designed to protect the elements within the laboratory from airborne particulates. Clinical laboratories perform diagnostic testing and are designed to contain pathological hazards. Production laboratories also require an environment restricting containment and air quality because these laboratories produce very pure and consistent products such as drugs, airplane fuel, or dairy products. There is a vast number of different types of research and development (R\&D) laboratories ranging from atomic research labs to laser research labs to mechanical testing lab \cite{www-exilab}. 
+
+%what is big data
+Big data is data so numerous that the cost of storing it becomes a burden, it is data that grows exponentially and continuously, and it is data that comes in structured and unstructured forms. Big data provides a source of insight into the elements of cost, time, and process \cite{www-sasbig}. The push to big data has required the development of software tools that can handle the data load and provide a view into the valuable insights provided. 
+
+Where does Big Data meet laboratories? A great majority of laboratories have adopted the digital age with the implementation of Laboratory Information Management Systems (LIMS) and Electronic Laboratory Notebooks (ELN), but many of these laboratories do not produce data on the scale of big data. Only very specialized laboratories are currently producing enormous volumes of structured and unstructured data. Big data tools for laboratories still have  number of hurdles to over come such as security, the enormous variability in data diversity, and the steep learning curve but entire industries are coming together to solve these problems in an effort to unlock the power of data \cite{Ardagna}.
+
+
+\section{Clinical Laboratories}
+%2 more citations
+Clinical laboratories are within the healthcare sector. The specialty is testing the checmical components of body fluid and tissue. Thousands of clinical tests exist and clinical laboratories must be equip and have the ability to run a great number of them quickly \cite{www-stanford}. The healthcare industry has been slow to adopt digital solutions which means that many clinical laboratories are still run out of paper notebooks. Data solutions such as Electronic Health Records (EHR), LIMS, ELN, and clinical decision support systems are helping the industry to test samples faster and treat patients smarter. 
+
+Big data in the healthcare industry in being applied mainly to electronic health record systems as whole countries find interest in adopting systems that are capable of tracking patient data for the entire population. One particularly interesting use of big data for medical purposes is to analyze electrocardiograph (ECG) data using Hadoop. ECG data is essentially a repetitive time series of a patient's heart activity. Analyzing multiple patient files becomes a daunting task, but using Hadoop allows for ease of storage and the application of time series analysis to identify trends that enable earlier diagnosis of heart disease \cite{Sivaranjani}.
+
+The data collected from the many tests run in clinical laboratories has the potential to be combine populations spanning millions, even billions, of patients. A lot of this data will come from ELNs and electronic health record systems which means a lot of unstructured data from free form fields. The collection of this data is allowing for the identification of sub-populations with higher infant mortality, increased risk of cancer, decreased life expectancy, and the like \cite{Panda}. Laboratory data can then gleam light on what indicators are present to help explain and reduce these health risks. Big Data applications such as Hadoop, Intel Galileo, and cloud plaforms Google Cloud Platform and Amazon Web Services are changing the healthcare industry to combine data in EHR, clinician notes, imaging data, and genomics data \cite{Dineshkumar}.
+
+\section{Pharmaceutical Laboratories}
+%4 more citations
+The pharmaceutical sector began to adopt big data system more rapidly then the healthcare industry. Pharmaceutical laboratories specialize in the purification, manufacture, and testing of drugs. Laboratories within this sector are digitized with LIMS and ELN with a movement towards platfrom solutions that can combine the structured data of LIMS with the unstructured data from an ELN to drive insights. Amazon Webservices and Google Cloud Platform are top of the list within this highly regulated sector because of their options to deploy a validated cloud solution. 
+
+A unique aspect of drug development is the creation animal models to assist in validating drug targets. The development and propagation of animal models require genetic data on the scale of big data. High throughput screening is the process of identifying hundreds of genetic or protein markers from a sample. Aside from the storage of results, the analysis of high throughput screening is incomprehensible without the aid of statistical tools \cite{Seebode}.
+
+SAP HANA is a cloud based analytic and storage application that has been successfully implemented within the pharmaceutical industry. HANA can be designed to provide accurate sample tracking using Radio Frequency Identification (RFID), detail supply chain, store data on the scale of big data, and perform in depth analysis \cite{Chircu}. Big data solutions are currently in development to apply machine learning algorithms and data mining techniques to the task of drug repositioning. This task involves analyzing collected data toxicology, clinical trial data, published data, drug compatibility data, and more for the purpose to identify new uses for old drugs \cite{Zhang}.
+
+\section{Aerospace Laboratories}
+%3 more citations
+Not all laboratories are based in biological or chemical sciences. Some labs have telescopes instead of microscopes. Some lab testing starts with a computer model. This is the case in the aerospace industry. An industry that has fully embraced the power of big data applications. Aerospace laboratory testing consists of mechanical analysis, satellite data, physics based models, and advanced computer engineering. In comparison to the healthcare industry, the aerospace industry is on another planet when it comes to big data \cite{Evan}. 
+
+Satellite data archives maintain large volumes of observational data. Data and Information Management Systems (DIMS) are designed to handle the data load as well as maintain constant network connection to ensure no part of the real time data feed is lost. The daily data throughput can be from 250 to over 900 GB which means that transferring data requires an even bigger processing engine with some data engines exceeding 10 TB per day transfer rates \cite{Kiemle}. 10 TB per day might seem pretty fast until it is considered that NASA hosts a data archive of satellite data that exceeds 500 TB \cite{Lenka}.  All this data on its own does not produce much value. The value comes from the analysis of the data. 
+
+IBM has developed the Physical Analytics Integrates Data Repository and Services (PAIRS) as a geospatial data repository and analysis engine. The platfrom functions off of IBM's cloud system which stores data on a distributed Hadoop/Hbase system. PAIRS provides the ability to perform time series analysis on satellite and drone images \cite{Lu}. Apache Spark provides the framework for machine learning algorithms to use and the development of GeoSpark has enabled the process of spatial data as well \cite{Lenka}. 
+
+\section{Resources Laboratory}
+%3-4 more paragraphs 6 more citations
+The resources industry consists of a lot of mining: coal mining, oil mining, and data mining. Laboratories within the resources sector are devoted to purification and manufacturing tasks. Resources labs measure system efficiency and monitor mechanical functions. Machine learning techniques have been able to identify system failure through auditory and mechanical vibration data \cite{Lei}. Laboratories within the resources space also adopt LIMS and ELN technologies. The data collected by the oil and gas company Cheveron exceeds 1.5 TB per day \cite{Alguliyev}.
+
+Big data analysis within the resources sector has contributed to optimizing production and saving energy \cite{Guizhi}. Oracle, IBM, Hitachi, and Microsoft have all dedicated significant resources to developing big data solutions specific to the resources industry through platform solutions for storage and analysis of data. Syncsort, Pentaho, and Talend  have developed analytics tools to run interactive analytics specific to the sector \cite{Alguliyev}. Cloud technologies present convenience of storage and scaling, but pose the question of security. Companies within the resources industry have shifted towards cloud environments, but prefer private data storage and are even exploring modular IT architectures that support additional storage security \cite{Perrons2}.
+
+Like the aerospace industry, the resources industry also uses geospatial and geologic data for production. The benefit of big data analysis tools to the industry is the ability to monitor current production as well as identify new patterns and predictions \cite{PERRONS}. 
+
+\section{Conclusion}
+%no citations 2-3 paragraphs
+Laboratories of all shapes and sizes can use the many big data storage and analysis products to help make scientific decisions and drive innovation throughout the many industries that invest in research and development. Healthcare might be the slowest adopter of big data technologies while the aerospace industry has been using big data storage and analysis tools for decades. As the demand for specialized tools continue to grow within these industries, the products will continue to develop and drive more powerful insights.
+
+Many of the tools currently being used to implement the digitization of laboratories: LIMS, ELN, EHR; are not currently designed with big data in mind. Platform solutions are allowing these systems to grow to the scale of big data. A single hospital or a single clinical trial produces a lot of data, but nothing on the scale of big data. It is when the data from an entire country's population is combined to produce insight that big data tools can really drive decisions. It is when the data from thousands of clinical trials is combined that big data can identify possible targets or alternate uses for drugs. Big data is revolutionizing laboratories in every sector and innovation will only continue to get faster, better, ad smarter. 
+
+
+\begin{acks}
+
+The author would like to thank Dr. Gregor von Laszewski and the teaching assistants of the Fall 2017 i523 course for their support and suggestions to write this paper.
+
+\end{acks}
+
+\bibliographystyle{ACM-Reference-Format}
+\bibliography{report} 
+
+\end{document}
